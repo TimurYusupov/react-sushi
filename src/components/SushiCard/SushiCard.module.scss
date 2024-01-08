@@ -1,0 +1,97 @@
+@import '../../styles/variables';
+
+.sushiCard {
+   display: flex;
+
+   img {
+      // width: 228px;
+      width: 200px;
+   }
+
+   .rightSide {
+      .info {
+         .name {
+            font-size: 18px;
+            font-weight: 900;
+            letter-spacing: 1%;
+            margin-bottom: 5px;
+         }
+
+         .price {
+            font-size: 15px;
+         }
+
+         .portion {
+            display: inline;
+            padding: 3px 4px;
+            background-color: rgba(179, 179, 179, 1.0);
+            color: #fff;
+            font-size: 12px;
+            margin-right: 3px;
+            border-radius: 3px;
+         }
+
+         .vegan {
+            display: inline;
+            padding: 3px 4px;
+            background-color: darkseagreen;
+            color: #fff;
+            font-size: 12px;
+            border-radius: 3px;
+         }
+      }
+
+      .btn {
+         display: flex;
+         align-items: center;
+         gap: 4px;
+         margin-top: 10px;
+         padding: 8px 20px;
+         background-color: #fff;
+         border: 1px solid $orange;
+         border-radius: 20px;
+         font-weight: 600;
+         font-size: 16px;
+         color: $orange;
+         text-transform: unset;
+         transition: all 0.2s ease-in-out;
+
+         &:hover {
+            background-color: $orange;
+            color: #fff;
+
+            svg path {
+               fill: #fff;
+            }
+
+            .sushiCount {
+               background-color: #fff;
+               color: $orange;
+            }
+         }
+
+         svg path {
+            fill: $orange;
+            transition: all 0.2s ease-in-out;
+         }
+
+         .sushiCount {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 19px;
+            height: 19px;
+            background-color: $orange;
+            color: #fff;
+            font-size: 14px;
+            border-radius: 50%;
+            transition: all 0.2s ease-in-out;
+
+            &:hover {
+               background-color: #fff;
+               color: $orange;
+            }
+         }
+      }
+   }
+}

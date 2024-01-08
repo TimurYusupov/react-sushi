@@ -1,0 +1,151 @@
+@import './variables';
+
+body {
+   margin: 0;
+   padding: 0;
+   background-color: $background;
+   font-family: 'Nunito', Roboto, system-ui, Tahoma, sans-serif;
+}
+
+* {
+   padding: 0;
+   margin: 0;
+   box-sizing: border-box;
+}
+
+h1 {
+   font-size: 48px;
+}
+
+h2 {
+   font-weight: 600;
+   font-size: 28px;
+   line-height: 30px;
+}
+
+li {
+   list-style-type: none;
+}
+
+a {
+   text-decoration: none;
+}
+
+a,
+span,
+p,
+b,
+h1,
+h2,
+h3,
+h4,
+h5 {
+   color: $black;
+}
+
+.button {
+   padding: 12px 25px;
+   text-align: center;
+   background: none;
+   border: none;
+   border-radius: 10px;
+   background-color: #232323;
+   color: #fff;
+   font-size: 15px;
+   font-weight: 500;
+   text-transform: uppercase;
+   cursor: pointer;
+   transition: background-color $duration ease-in-out;
+
+   &:hover {
+      background-color: lighten($color: $black, $amount: 10);
+   }
+
+   &--cart {
+      display: flex;
+      align-items: center;
+      padding: 12px 25px;
+      background-color: $orange;
+      border-radius: 25px;
+
+      span {
+         color: #fff;
+      }
+
+      svg {
+         margin-right: 5px;
+      }
+
+      &:hover {
+         background-color: darken($orange, 10%);
+      }
+   }
+
+   &__divider {
+      width: 1px;
+      height: 25px;
+      background-color: rgba(255, 255, 255, 0.25);
+      ;
+      margin-left: 14px;
+      margin-right: 14px;
+   }
+}
+
+.wrapper {
+   max-width: 1400px;
+   background-color: #fff;
+   border-radius: 10px;
+   margin: 10px auto;
+
+   @media (min-width: 500px) {
+      width: calc(100vw - 50px);
+      margin: 20px auto;
+   }
+
+   @media (min-width: 750px) {
+      width: calc(100vw - 100px);
+      margin: 40px auto;
+   }
+}
+
+.container {
+   padding: 0 10px;
+
+   @media (min-width: 500px) {
+      padding: 0;
+      max-width: 90%;
+      margin: 0 auto;
+   }
+}
+
+.categories-sort {
+   padding: 40px 0;
+   display: flex;
+   flex-direction: column-reverse;
+   align-items: center;
+   row-gap: 20px;
+
+   @media (min-width: 850px) {
+      flex-direction: row;
+      justify-content: space-between;
+      row-gap: 0;
+   }
+}
+
+.items {
+   padding-bottom: 60px;
+
+   h1 {
+      text-align: center;
+      font-size: 40px;
+      margin-bottom: 30px;
+   }
+
+   .sushiItems {
+      display: grid;
+      justify-content: center;
+      grid-template-columns: repeat(auto-fill, 330px);
+      column-gap: 20px;
+      row-gap: 35px;
+   }
+}

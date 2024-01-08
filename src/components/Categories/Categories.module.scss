@@ -1,0 +1,42 @@
+@import '../../styles/variables';
+
+.categories {
+   overflow: auto;
+   max-width: 100%;
+
+   @media (min-width: 850px) {
+      overflow: unset;
+      width: 100%;
+   }
+
+   ul {
+      display: flex;
+      gap: 10px;
+
+      @media (min-width: 850px) {
+         flex-wrap: wrap;
+      }
+   }
+
+   &Btn {
+      padding: 15px 30px;
+      background-color: #f9f9f9;
+      border-radius: 25px;
+      font-weight: 600;
+      transition: background-color 0.1s ease-in-out;
+      cursor: pointer;
+
+      &:active {
+         background-color: darken(#f9f9f9, 5%);
+      }
+
+      &:hover {
+         background-color: darken(#f9f9f9, 2%);
+      }
+
+      &.active {
+         background-color: #282828;
+         color: #fff;
+      }
+   }
+}
