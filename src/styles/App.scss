@@ -117,35 +117,3 @@ h5 {
       margin: 0 auto;
    }
 }
-
-.categories-sort {
-   padding: 40px 0;
-   display: flex;
-   flex-direction: column-reverse;
-   align-items: center;
-   row-gap: 20px;
-
-   @media (min-width: 850px) {
-      flex-direction: row;
-      justify-content: space-between;
-      row-gap: 0;
-   }
-}
-
-.items {
-   padding-bottom: 60px;
-
-   h1 {
-      text-align: center;
-      font-size: 40px;
-      margin-bottom: 30px;
-   }
-
-   .sushiItems {
-      display: grid;
-      justify-content: center;
-      grid-template-columns: repeat(auto-fill, 330px);
-      column-gap: 20px;
-      row-gap: 35px;
-   }
-}
