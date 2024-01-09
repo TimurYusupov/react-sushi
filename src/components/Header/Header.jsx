@@ -1,10 +1,11 @@
 import Search from '../Search/Search'
 import styles from './Header.module.scss'
+import { Link } from 'react-router-dom'
 
 const Header = () => {
    return (
       <header>
-         <a href="/">
+         <Link to="/">
             <div className={styles.logo}>
                <img src={'/img/header/main-icon.png'} alt="logo" width={38} />
                <div className={styles.title}>
@@ -12,9 +13,9 @@ const Header = () => {
                   <p>best sushi in the world</p>
                </div>
             </div>
-         </a>
+         </Link>
          <Search />
-         <a href="/" className="button button--cart">
+         <Link to="/cart" className="button button--cart">
             <span>0 €</span>
             <div className="button__divider"></div>
             <svg
@@ -47,7 +48,7 @@ const Header = () => {
                />
             </svg>
             <span>0</span>
-         </a>
+         </Link>
       </header>
    )
 }
