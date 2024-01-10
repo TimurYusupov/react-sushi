@@ -1,21 +1,28 @@
-import { useEffect, useRef, useState } from 'react'
+import { useEffect, useRef } from 'react'
 import styles from './Sort.module.scss'
 
-const Sort = () => {
-   const [isPopupOpened, setIsPopupOpened] = useState(false)
-   const [rotateArrow, setRotateArrow] = useState(false)
-   const [sort, setSort] = useState('Rating')
+const Sort = ({
+   isPopupOpened,
+   setIsPopupOpened,
+   rotateArrow,
+   setRotateArrow,
+   sort,
+   setSort
+}) => {
    const sortRef = useRef()
 
    const sortList = [
       {
-         name: 'Rating'
+         name: 'Name',
+         sortProperty: 'title'
       },
       {
-         name: 'Lowest Price'
+         name: 'Lowest Price',
+         sortProperty: 'price'
       },
       {
-         name: 'Highest Price'
+         name: 'Highest Price',
+         sortProperty: '-price'
       }
    ]
 
@@ -24,8 +31,8 @@ const Sort = () => {
       setIsPopupOpened(!isPopupOpened)
    }
 
-   const selectSort = (objName) => {
-      setSort(objName)
+   const selectSort = (obj) => {
+      setSort(obj)
       setIsPopupOpened(false)
       setRotateArrow(false)
    }
@@ -62,16 +69,16 @@ const Sort = () => {
                />
             </svg>
             <b>Sort by:</b>
-            <span onClick={openPopup}>{sort}</span>
+            <span onClick={openPopup}>{sort.name}</span>
          </div>
 
          {isPopupOpened && (
             <ul className={styles.popup}>
                {sortList.map((obj, i) => (
                   <li
-                     className={obj.name === sort ? styles.selected : ''}
+                     className={obj.name === sort.name ? styles.selected : ''}
                      key={i}
-                     onClick={() => selectSort(obj.name)}
+                     onClick={() => selectSort(obj)}
                   >
                      {obj.name}
                   </li>

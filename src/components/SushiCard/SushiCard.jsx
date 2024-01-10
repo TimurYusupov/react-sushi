@@ -1,12 +1,12 @@
 import styles from './SushiCard.module.scss'
 
-const SushiCard = ({ id, name, price, count, img, portionSize, vegan, addSushi }) => {
+const SushiCard = ({ id, title, price, count, img, portionSize, vegan, addSushi }) => {
    return (
       <article className={styles.sushiCard}>
-         <img src={img} alt={name} />
+         <img src={img} alt={title} />
          <div className={styles.rightSide}>
             <div className={styles.info}>
-               <h3 className={styles.name}>{name}</h3>
+               <h3 className={styles.name}>{title}</h3>
                <p className={styles.price}>EUR {price}</p>
                <p className={styles.portion}>{portionSize} pcs</p>
                {vegan && <p className={styles.vegan}>vegan</p>}

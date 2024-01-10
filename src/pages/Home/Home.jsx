@@ -8,18 +8,18 @@ import styles from './Home.module.scss'
 
 const Home = () => {
    const [allSushi, setAllSushi] = useState([])
+   const [category, setCategory] = useState(0)
+   const [isPopupOpened, setIsPopupOpened] = useState(false)
+   const [rotateArrow, setRotateArrow] = useState(false)
+   const [sort, setSort] = useState({
+      name: 'Name',
+      sortProperty: 'title'
+   })
+
+   const sortParam = `sortBy=${sort.sortProperty}`
+   const categoryParam = `${category > 0 ? `&category=${category}` : ''}`
 
    const addSushi = (id) => {
-      /* setAllSushi((prev) => {
-         return prev.map((item) => {
-            if (item.id === id) {
-               return { ...item, count: item.count + 1 }
-            } else {
-               return item
-            }
-         })
-      }) */
-
       setAllSushi((prev) =>
          prev.map((item) => (item.id === id ? { ...item, count: item.count + 1 } : item))
       )
@@ -27,23 +27,27 @@ const Home = () => {
 
    useEffect(() => {
       const fetchAllSushi = async () => {
-         try {
-            const response = await fetch('https://518e0d814bf9a511.mokky.dev/items')
-            const sushiData = await response.json()
-            setAllSushi(sushiData)
-         } catch (err) {
-            console.log(err)
-         }
+         const res = await fetch(
+            `https://518e0d814bf9a511.mokky.dev/items?${sortParam}${categoryParam}`
+         )
+         const data = await res.json()
+         setAllSushi(data)
       }
-
       fetchAllSushi()
-   }, [])
+   }, [sortParam, categoryParam])
 
    return (
       <div className="container">
          <section className={styles.categoriesSort}>
-            <Categories />
-            <Sort />
+            <Categories category={category} setCategory={setCategory} />
+            <Sort
+               isPopupOpened={isPopupOpened}
+               setIsPopupOpened={setIsPopupOpened}
+               rotateArrow={rotateArrow}
+               setRotateArrow={setRotateArrow}
+               sort={sort}
+               setSort={setSort}
+            />
          </section>
 
          <section className={styles.items}>

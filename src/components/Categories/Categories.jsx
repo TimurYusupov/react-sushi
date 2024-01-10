@@ -1,9 +1,7 @@
-import { useState } from 'react'
 import styles from './Categories.module.scss'
 
-const Categories = () => {
+const Categories = ({ category, setCategory }) => {
    const categories = ['All', 'Single', 'Maki', 'Rolls', 'Sashimi', 'Plates']
-   const [category, setCategory] = useState(0)
 
    return (
       <div className={styles.categories}>
