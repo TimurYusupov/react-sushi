@@ -16,6 +16,7 @@ const Search = () => {
 
    const findPizza = () => {
       dispatch(setSearchValue(searchInput))
+      setSearchInput('')
    }
 
    return (
