@@ -5,9 +5,11 @@ import Sort from '../../components/Sort/Sort'
 import SushiCard from '../../components/SushiCard/SushiCard'
 
 import styles from './Home.module.scss'
+import { useSelector } from 'react-redux'
 
 const Home = () => {
    const [allSushi, setAllSushi] = useState([])
+   const { searchValue } = useSelector((state) => state.headerSlice)
    const [category, setCategory] = useState(0)
    const [isPopupOpened, setIsPopupOpened] = useState(false)
    const [rotateArrow, setRotateArrow] = useState(false)
@@ -18,6 +20,7 @@ const Home = () => {
 
    const sortParam = `sortBy=${sort.sortProperty}`
    const categoryParam = `${category > 0 ? `&category=${category}` : ''}`
+   const searchParam = `${searchValue ? `&title=*${searchValue}*` : ''}`
 
    const addSushi = (id) => {
       setAllSushi((prev) =>
@@ -28,13 +31,13 @@ const Home = () => {
    useEffect(() => {
       const fetchAllSushi = async () => {
          const res = await fetch(
-            `https://518e0d814bf9a511.mokky.dev/items?${sortParam}${categoryParam}`
+            `https://518e0d814bf9a511.mokky.dev/items?${sortParam}${categoryParam}${searchParam}`
          )
          const data = await res.json()
          setAllSushi(data)
       }
       fetchAllSushi()
-   }, [sortParam, categoryParam])
+   }, [sortParam, categoryParam, searchParam])
 
    return (
       <div className="container">

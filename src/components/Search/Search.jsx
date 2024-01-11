@@ -1,13 +1,21 @@
-import { useRef, useState } from 'react'
+import { useState, useRef } from 'react'
 import styles from './Search.module.scss'
+import { useDispatch } from 'react-redux'
+import { setSearchValue } from '../../redux/slice/headerSlice'
 
 const Search = () => {
+   const dispatch = useDispatch()
    const [searchInput, setSearchInput] = useState('')
+
    const inputRef = useRef()
 
    const clearInput = () => {
       setSearchInput('')
       inputRef.current.focus()
+   }
+
+   const findPizza = () => {
+      dispatch(setSearchValue(searchInput))
    }
 
    return (
@@ -36,7 +44,9 @@ const Search = () => {
                />
             )}
          </div>
-         <button className="button">Find</button>
+         <button className="button" onClick={findPizza}>
+            Find
+         </button>
       </div>
    )
 }
