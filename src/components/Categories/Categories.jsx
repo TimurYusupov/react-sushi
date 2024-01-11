@@ -1,6 +1,6 @@
 import styles from './Categories.module.scss'
 
-const Categories = ({ category, setCategory }) => {
+const Categories = ({ category, selectCategory }) => {
    const categories = ['All', 'Single', 'Maki', 'Rolls', 'Sashimi', 'Plates']
 
    return (
@@ -12,7 +12,7 @@ const Categories = ({ category, setCategory }) => {
                   className={`${styles.categoriesBtn} ${
                      category === i ? styles.active : ''
                   }`}
-                  onClick={() => setCategory(i)}
+                  onClick={() => selectCategory(i)}
                >
                   {cat}
                </li>

@@ -1,26 +1,34 @@
 import { useEffect, useState } from 'react'
+import { useDispatch, useSelector } from 'react-redux'
+
+import { setCategory, setSort } from '../../redux/slice/homeSlice'
 
 import Categories from '../../components/Categories/Categories'
 import Sort from '../../components/Sort/Sort'
 import SushiCard from '../../components/SushiCard/SushiCard'
 
 import styles from './Home.module.scss'
-import { useSelector } from 'react-redux'
 
 const Home = () => {
-   const [allSushi, setAllSushi] = useState([])
+   const dispatch = useDispatch()
    const { searchValue } = useSelector((state) => state.headerSlice)
-   const [category, setCategory] = useState(0)
+   const { category, sort } = useSelector((state) => state.homeSlice)
+
+   const [allSushi, setAllSushi] = useState([])
    const [isPopupOpened, setIsPopupOpened] = useState(false)
    const [rotateArrow, setRotateArrow] = useState(false)
-   const [sort, setSort] = useState({
-      name: 'Name',
-      sortProperty: 'title'
-   })
 
    const sortParam = `sortBy=${sort.sortProperty}`
    const categoryParam = `${category > 0 ? `&category=${category}` : ''}`
    const searchParam = `${searchValue ? `&title=*${searchValue}*` : ''}`
+
+   const selectCategory = (c) => {
+      dispatch(setCategory(c))
+   }
+
+   const changeSort = (sortObj) => {
+      dispatch(setSort(sortObj))
+   }
 
    const addSushi = (id) => {
       setAllSushi((prev) =>
@@ -42,14 +50,14 @@ const Home = () => {
    return (
       <div className="container">
          <section className={styles.categoriesSort}>
-            <Categories category={category} setCategory={setCategory} />
+            <Categories category={category} selectCategory={selectCategory} />
             <Sort
                isPopupOpened={isPopupOpened}
                setIsPopupOpened={setIsPopupOpened}
                rotateArrow={rotateArrow}
                setRotateArrow={setRotateArrow}
                sort={sort}
-               setSort={setSort}
+               changeSort={changeSort}
             />
          </section>
 

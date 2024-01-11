@@ -7,7 +7,7 @@ const Sort = ({
    rotateArrow,
    setRotateArrow,
    sort,
-   setSort
+   changeSort
 }) => {
    const sortRef = useRef()
 
@@ -32,7 +32,7 @@ const Sort = ({
    }
 
    const selectSort = (obj) => {
-      setSort(obj)
+      changeSort(obj)
       setIsPopupOpened(false)
       setRotateArrow(false)
    }
