@@ -8,7 +8,7 @@ const SushiCard = ({ id, title, price, count, img, portionSize, vegan, addSushi 
             <div className={styles.info}>
                <h3 className={styles.name}>{title}</h3>
                <p className={styles.price}>EUR {price.toFixed(2)}</p>
-               <p className={styles.portion}>{portionSize} pcs</p>
+               {portionSize > 0 && <p className={styles.portion}>{portionSize} pcs</p>}
                {vegan && <p className={styles.vegan}>vegan</p>}
             </div>
             <button className={`button ${styles.btn}`} onClick={() => addSushi(id)}>

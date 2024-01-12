@@ -1,7 +1,7 @@
 import styles from './Categories.module.scss'
 
 const Categories = ({ category, selectCategory }) => {
-   const categories = ['All', 'Single', 'Maki', 'Rolls', 'Sashimi', 'Plates']
+   const categories = ['All', 'Single', 'Maki', 'Rolls', 'Bento', 'Plates']
 
    return (
       <div className={styles.categories}>
