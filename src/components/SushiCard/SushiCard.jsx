@@ -7,7 +7,7 @@ const SushiCard = ({ id, title, price, count, img, portionSize, vegan, addSushi 
          <div className={styles.rightSide}>
             <div className={styles.info}>
                <h3 className={styles.name}>{title}</h3>
-               <p className={styles.price}>EUR {price}</p>
+               <p className={styles.price}>EUR {price.toFixed(2)}</p>
                <p className={styles.portion}>{portionSize} pcs</p>
                {vegan && <p className={styles.vegan}>vegan</p>}
             </div>
