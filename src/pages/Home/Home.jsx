@@ -22,6 +22,8 @@ const Home = () => {
    const categoryParam = `${category > 0 ? `&category=${category}` : ''}`
    const searchParam = `${searchValue ? `&title=*${searchValue}*` : ''}`
 
+   const categoriesList = ['All', 'Single', 'Maki', 'Rolls', 'Bento', 'Plates']
+
    const selectCategory = (c) => {
       dispatch(setCategory(c))
    }
@@ -50,7 +52,11 @@ const Home = () => {
    return (
       <div className="container">
          <section className={styles.categoriesSort}>
-            <Categories category={category} selectCategory={selectCategory} />
+            <Categories
+               category={category}
+               selectCategory={selectCategory}
+               categoriesList={categoriesList}
+            />
             <Sort
                isPopupOpened={isPopupOpened}
                setIsPopupOpened={setIsPopupOpened}
@@ -62,7 +68,7 @@ const Home = () => {
          </section>
 
          <section className={styles.items}>
-            <h1>All:</h1>
+            <h1>{categoriesList[category]}:</h1>
             <div className={styles.sushiItems}>
                {allSushi.map((item) => (
                   <SushiCard addSushi={addSushi} key={item.id} {...item} />

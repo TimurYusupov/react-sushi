@@ -1,12 +1,10 @@
 import styles from './Categories.module.scss'
 
-const Categories = ({ category, selectCategory }) => {
-   const categories = ['All', 'Single', 'Maki', 'Rolls', 'Bento', 'Plates']
-
+const Categories = ({ category, selectCategory, categoriesList }) => {
    return (
       <div className={styles.categories}>
          <ul>
-            {categories.map((cat, i) => (
+            {categoriesList.map((cat, i) => (
                <li
                   key={i}
                   className={`${styles.categoriesBtn} ${
