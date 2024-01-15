@@ -34,6 +34,8 @@ const Home = () => {
 
    const selectCategory = (c) => {
       dispatch(setCategory(c))
+
+      setCurrentPage(1)
    }
 
    const changeSort = (sortObj) => {
