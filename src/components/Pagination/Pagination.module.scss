@@ -1,0 +1,30 @@
+.pageButtons {
+   display: flex;
+   gap: 5px;
+
+   button {
+      width: 45px;
+      height: 45px;
+      font-size: 17px;
+      color: #fe5f1e;
+      border: 1px solid #fe5f1e;
+      border-radius: 30px;
+      cursor: pointer;
+      transition: all 0.2s ease-in-out;
+
+      &:hover {
+         background-color: #fe5f1e;
+         color: #fff;
+      }
+
+      &.active {
+         background-color: #fe5f1e;
+         color: #fff;
+      }
+
+      &:disabled {
+         opacity: 0.5;
+         cursor: not-allowed;
+      }
+   }
+}

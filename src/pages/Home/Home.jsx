@@ -8,6 +8,7 @@ import Sort from '../../components/Sort/Sort'
 import SushiCard from '../../components/SushiCard/SushiCard'
 
 import styles from './Home.module.scss'
+import Pagination from '../../components/Pagination/Pagination'
 
 const Home = () => {
    const dispatch = useDispatch()
@@ -17,6 +18,13 @@ const Home = () => {
    const [allSushi, setAllSushi] = useState([])
    const [isPopupOpened, setIsPopupOpened] = useState(false)
    const [rotateArrow, setRotateArrow] = useState(false)
+   const [currentPage, setCurrentPage] = useState(1)
+   const [totalPages, setTotalPages] = useState(0)
+
+   const itemsPerPage = 9
+   const startIndex = (currentPage - 1) * itemsPerPage
+   const endIndex = startIndex + itemsPerPage
+   const slicedSushi = allSushi.slice(startIndex, endIndex)
 
    const sortParam = `sortBy=${sort.sortProperty}`
    const categoryParam = `${category > 0 ? `&category=${category}` : ''}`
@@ -45,6 +53,7 @@ const Home = () => {
          )
          const data = await res.json()
          setAllSushi(data)
+         setTotalPages(Math.ceil(data.length / itemsPerPage))
       }
       fetchAllSushi()
    }, [sortParam, categoryParam, searchParam])
@@ -70,10 +79,18 @@ const Home = () => {
          <section className={styles.items}>
             <h1>{categoriesList[category]}:</h1>
             <div className={styles.sushiItems}>
-               {allSushi.map((item) => (
+               {slicedSushi.map((item) => (
                   <SushiCard addSushi={addSushi} key={item.id} {...item} />
                ))}
             </div>
+         </section>
+
+         <section className="pagination">
+            <Pagination
+               currentPage={currentPage}
+               setCurrentPage={setCurrentPage}
+               totalPages={totalPages}
+            />
          </section>
       </div>
    )
