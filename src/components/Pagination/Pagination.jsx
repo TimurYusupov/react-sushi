@@ -1,7 +1,13 @@
 import styles from './Pagination.module.scss'
+import { setCurrentPage } from '../../redux/slice/homeSlice'
+import { useDispatch, useSelector } from 'react-redux'
 
-const Pagination = ({ currentPage, selectCurrentPage, totalPages }) => {
+const Pagination = ({ totalPages }) => {
+   const dispatch = useDispatch()
+   const { currentPage } = useSelector((state) => state.homeSlice)
+
    const pageNumbers = []
+
    for (let i = 0; i < totalPages; i++) {
       pageNumbers.push(i + 1)
    }
@@ -9,7 +15,7 @@ const Pagination = ({ currentPage, selectCurrentPage, totalPages }) => {
    return (
       <div className={styles.pageButtons}>
          <button
-            onClick={() => selectCurrentPage(currentPage - 1)}
+            onClick={() => dispatch(setCurrentPage(currentPage - 1))}
             disabled={currentPage === 1}
          >
             {'<'}
@@ -18,13 +24,13 @@ const Pagination = ({ currentPage, selectCurrentPage, totalPages }) => {
             <button
                className={currentPage === i + 1 ? styles.active : ''}
                key={i}
-               onClick={() => selectCurrentPage(i + 1)}
+               onClick={() => dispatch(setCurrentPage(i + 1))}
             >
                {page}
             </button>
          ))}
          <button
-            onClick={() => selectCurrentPage(currentPage + 1)}
+            onClick={() => dispatch(setCurrentPage(currentPage + 1))}
             disabled={currentPage === totalPages}
          >
             {'>'}

@@ -18,15 +18,12 @@ import Pagination from '../../components/Pagination/Pagination'
 const Home = () => {
    const dispatch = useDispatch()
    const { searchValue } = useSelector((state) => state.headerSlice)
-   const { sushiData, category, sort, currentPage } = useSelector(
-      (state) => state.homeSlice
-   )
+   const { sushiData, category, sort, currentPage, itemsPerPage, totalPages, status } =
+      useSelector((state) => state.homeSlice)
 
-   const [totalPages, setTotalPages] = useState(0)
    const [isPopupOpened, setIsPopupOpened] = useState(false)
    const [rotateArrow, setRotateArrow] = useState(false)
 
-   const itemsPerPage = 9
    const startIndex = (currentPage - 1) * itemsPerPage
    const endIndex = startIndex + itemsPerPage
    const slicedSushi = sushiData ? sushiData.slice(startIndex, endIndex) : []
@@ -47,17 +44,11 @@ const Home = () => {
       dispatch(setSort(sortObj))
    }
 
-   const selectCurrentPage = (page) => {
-      dispatch(setCurrentPage(page))
-   }
-
    useEffect(() => {
       dispatch(fetchSushi({ sortParam, categoryParam, searchParam }))
 
-      setTotalPages(Math.ceil(sushiData.length / itemsPerPage))
-
       window.scrollTo(0, 0)
-   }, [dispatch, sortParam, categoryParam, searchParam, sushiData.length])
+   }, [dispatch, sortParam, categoryParam, searchParam])
 
    return (
       <div className="container">
@@ -79,17 +70,24 @@ const Home = () => {
 
          <section className={styles.items}>
             <h1>{categoriesList[category]}:</h1>
-            <div className={styles.sushiItems}>
-               {sushiData.length === 0 ? 'Loading...' : sushiBlocks}
-            </div>
+
+            {status === 'error' ? (
+               <div className={styles.errorInfo}>
+                  <h2>Произошла ошибка 😕</h2>
+                  <p>
+                     К сожалению, не удалось получить пиццы. Попробуйте повторить попытку
+                     позже
+                  </p>
+               </div>
+            ) : (
+               <div className={styles.sushiItems}>
+                  {status === 'loading' ? 'Loading...' : sushiBlocks}
+               </div>
+            )}
          </section>
 
          <section className="pagination">
-            <Pagination
-               currentPage={currentPage}
-               selectCurrentPage={selectCurrentPage}
-               totalPages={totalPages}
-            />
+            <Pagination totalPages={totalPages} />
          </section>
       </div>
    )

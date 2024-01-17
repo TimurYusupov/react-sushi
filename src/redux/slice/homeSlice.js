@@ -8,7 +8,9 @@ const initialState = {
       name: 'Name',
       sortProperty: 'title'
    },
-   currentPage: 1
+   currentPage: 1,
+   itemsPerPage: 9,
+   totalPages: 0
 }
 
 export const fetchSushi = createAsyncThunk('homeSlice/fetchSushi', async (params) => {
@@ -42,6 +44,7 @@ const homeSlice = createSlice({
       builder.addCase(fetchSushi.fulfilled, (state, action) => {
          state.status = 'success'
          state.sushiData = action.payload
+         state.totalPages = Math.ceil(action.payload.length / state.itemsPerPage)
       })
       builder.addCase(fetchSushi.rejected, (state) => {
          state.status = 'error'
