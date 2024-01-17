@@ -2,6 +2,7 @@ import { useState, useRef } from 'react'
 import styles from './Search.module.scss'
 import { useDispatch } from 'react-redux'
 import { setSearchValue } from '../../redux/slice/headerSlice'
+import { setCurrentPage } from '../../redux/slice/homeSlice'
 
 const Search = () => {
    const dispatch = useDispatch()
@@ -16,6 +17,7 @@ const Search = () => {
 
    const findPizza = () => {
       dispatch(setSearchValue(searchInput))
+      dispatch(setCurrentPage(1))
    }
 
    return (

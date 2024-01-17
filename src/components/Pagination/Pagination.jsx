@@ -1,6 +1,6 @@
 import styles from './Pagination.module.scss'
 
-const Pagination = ({ currentPage, setCurrentPage, totalPages }) => {
+const Pagination = ({ currentPage, selectCurrentPage, totalPages }) => {
    const pageNumbers = []
    for (let i = 0; i < totalPages; i++) {
       pageNumbers.push(i + 1)
@@ -9,7 +9,7 @@ const Pagination = ({ currentPage, setCurrentPage, totalPages }) => {
    return (
       <div className={styles.pageButtons}>
          <button
-            onClick={() => setCurrentPage((prev) => prev - 1)}
+            onClick={() => selectCurrentPage(currentPage - 1)}
             disabled={currentPage === 1}
          >
             {'<'}
@@ -18,13 +18,13 @@ const Pagination = ({ currentPage, setCurrentPage, totalPages }) => {
             <button
                className={currentPage === i + 1 ? styles.active : ''}
                key={i}
-               onClick={() => setCurrentPage(i + 1)}
+               onClick={() => selectCurrentPage(i + 1)}
             >
                {page}
             </button>
          ))}
          <button
-            onClick={() => setCurrentPage((prev) => prev + 1)}
+            onClick={() => selectCurrentPage(currentPage + 1)}
             disabled={currentPage === totalPages}
          >
             {'>'}
