@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 
 const initialState = {
    sushiData: [],
+   status: 'loading',
    category: 0,
    sort: {
       name: 'Name',
@@ -34,16 +35,16 @@ const homeSlice = createSlice({
       }
    },
    extraReducers: (builder) => {
-      /* builder.addCase(fetchPizzas.pending, (state) => {
-         state.status = Status.LOADING
-         state.items = []
-      }) */
+      builder.addCase(fetchSushi.pending, (state) => {
+         state.status = 'loading'
+         state.sushiData = []
+      })
       builder.addCase(fetchSushi.fulfilled, (state, action) => {
-         // state.status = Status.SUCCESS
+         state.status = 'success'
          state.sushiData = action.payload
       })
       builder.addCase(fetchSushi.rejected, (state) => {
-         // state.status = Status.ERROR
+         state.status = 'error'
          state.sushiData = []
       })
    }
