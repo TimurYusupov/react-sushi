@@ -79,15 +79,17 @@ const Home = () => {
                      позже
                   </p>
                </div>
+            ) : status === 'loading' ? (
+               <p className={styles.itemsLoading}>Loading...</p>
+            ) : sushiData.length === 0 ? (
+               <p className={styles.itemsNotFound}>Nothing found</p>
             ) : (
-               <div className={styles.sushiItems}>
-                  {status === 'loading' ? 'Loading...' : sushiBlocks}
-               </div>
+               <div className={styles.sushiItems}>{sushiBlocks}</div>
             )}
          </section>
 
          <section className="pagination">
-            <Pagination totalPages={totalPages} />
+            {sushiData.length !== 0 && <Pagination totalPages={totalPages} />}
          </section>
       </div>
    )

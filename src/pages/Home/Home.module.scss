@@ -21,6 +21,13 @@
       margin-bottom: 30px;
    }
 
+   .itemsLoading,
+   .itemsNotFound {
+      margin-top: 80px;
+      text-align: center;
+      font-size: 30px;
+   }
+
    .sushiItems {
       display: grid;
       justify-content: center;
