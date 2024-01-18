@@ -1,8 +1,9 @@
 import { useState, useRef } from 'react'
-import styles from './Search.module.scss'
 import { useDispatch } from 'react-redux'
 import { setSearchValue } from '../../redux/slice/headerSlice'
 import { setCurrentPage } from '../../redux/slice/homeSlice'
+
+import styles from './Search.module.scss'
 
 const Search = () => {
    const dispatch = useDispatch()
