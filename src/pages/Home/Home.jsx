@@ -34,6 +34,7 @@ const Home = () => {
    const searchParam = `${searchValue ? `&title=*${searchValue}*` : ''}`
 
    const categoriesList = ['All', 'Single', 'Maki', 'Rolls', 'Bento', 'Plates']
+
    const sushiBlocks = slicedSushi.map((item) => <SushiCard key={item.id} {...item} />)
    const skeletons = Array(6).fill(<Skeleton />)
 

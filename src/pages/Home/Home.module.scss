@@ -28,10 +28,18 @@
    }
 
    .sushiItems {
-      display: grid;
+      /* display: grid;
       justify-content: center;
       grid-template-columns: repeat(auto-fill, 350px);
       column-gap: 20px;
-      row-gap: 35px;
+      row-gap: 35px; */
+
+      @media (min-width: 460px) {
+         display: grid;
+         grid-template-columns: repeat(auto-fill, 200px);
+         justify-content: center;
+         column-gap: 20px;
+         row-gap: 35px;
+      }
    }
 }
