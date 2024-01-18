@@ -14,6 +14,7 @@ import SushiCard from '../../components/SushiCard/SushiCard'
 
 import styles from './Home.module.scss'
 import Pagination from '../../components/Pagination/Pagination'
+import Skeleton from '../../components/SushiCard/Skeleton/Skeleton'
 
 const Home = () => {
    const dispatch = useDispatch()
@@ -34,6 +35,7 @@ const Home = () => {
 
    const categoriesList = ['All', 'Single', 'Maki', 'Rolls', 'Bento', 'Plates']
    const sushiBlocks = slicedSushi.map((item) => <SushiCard key={item.id} {...item} />)
+   const skeletons = Array(6).fill(<Skeleton />)
 
    const selectCategory = (c) => {
       dispatch(setCategory(c))
@@ -73,16 +75,19 @@ const Home = () => {
 
             {status === 'error' ? (
                <div className={styles.errorInfo}>
-                  <h2>Произошла ошибка 😕</h2>
+                  <h2>An error occurred 😕</h2>
                   <p>
-                     К сожалению, не удалось получить пиццы. Попробуйте повторить попытку
-                     позже
+                     Unfortunately, we couldn't fetch the sushis. Please try again later.
                   </p>
                </div>
             ) : status === 'loading' ? (
-               <p className={styles.itemsLoading}>Loading...</p>
+               <div className={styles.sushiItems}>
+                  {skeletons.map((skeleton, i) => (
+                     <div key={i}>{skeleton}</div>
+                  ))}
+               </div>
             ) : sushiData.length === 0 ? (
-               <p className={styles.itemsNotFound}>Nothing found</p>
+               <p className={styles.itemsNotFound}>Nothing found 😕</p>
             ) : (
                <div className={styles.sushiItems}>{sushiBlocks}</div>
             )}
