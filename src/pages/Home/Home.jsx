@@ -11,10 +11,10 @@ import {
 import Categories from '../../components/Categories/Categories'
 import Sort from '../../components/Sort/Sort'
 import SushiCard from '../../components/SushiCard/SushiCard'
-
-import styles from './Home.module.scss'
 import Pagination from '../../components/Pagination/Pagination'
 import Skeleton from '../../components/SushiCard/Skeleton/Skeleton'
+
+import styles from './Home.module.scss'
 
 const Home = () => {
    const dispatch = useDispatch()
@@ -35,8 +35,9 @@ const Home = () => {
 
    const categoriesList = ['All', 'Single', 'Maki', 'Rolls', 'Bento', 'Plates']
 
-   const sushiBlocks = slicedSushi.map((item) => <SushiCard key={item.id} {...item} />)
+   const screenWidth = window.innerWidth
    const skeletons = Array(6).fill(<Skeleton />)
+   const sushiBlocks = slicedSushi.map((item) => <SushiCard key={item.id} {...item} />)
 
    const selectCategory = (c) => {
       dispatch(setCategory(c))
@@ -83,9 +84,15 @@ const Home = () => {
                </div>
             ) : status === 'loading' ? (
                <div className={styles.sushiItems}>
-                  {skeletons.map((skeleton, i) => (
-                     <div key={i}>{skeleton}</div>
-                  ))}
+                  {screenWidth < 460 ? (
+                     <img
+                        className={styles.spinner}
+                        src="/img/spinner.svg"
+                        alt="Spinner"
+                     />
+                  ) : (
+                     skeletons.map((skeleton, i) => <div key={i}>{skeleton}</div>)
+                  )}
                </div>
             ) : sushiData.length === 0 ? (
                <p className={styles.itemsNotFound}>Nothing found 😕</p>
