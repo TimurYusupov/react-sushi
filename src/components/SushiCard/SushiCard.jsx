@@ -1,6 +1,16 @@
 import styles from './SushiCard.module.scss'
 
-const SushiCard = ({ id, title, price, count, img, portionSize, vegan, addSushi }) => {
+const SushiCard = ({
+   id,
+   title,
+   price,
+   count,
+   img,
+   portionSize,
+   vegan,
+   spicy,
+   addSushi
+}) => {
    return (
       <article className={styles.sushiCard}>
          <img src={img} alt={title} />
@@ -10,6 +20,7 @@ const SushiCard = ({ id, title, price, count, img, portionSize, vegan, addSushi 
                <p className={styles.price}>EUR {price.toFixed(2)}</p>
                {portionSize > 0 && <p className={styles.portion}>{portionSize} pcs</p>}
                {vegan && <p className={styles.vegan}>vegan</p>}
+               {spicy && <p className={styles.spicy}>spicy</p>}
             </div>
             <button className={`button ${styles.btn}`} onClick={() => addSushi(id)}>
                <svg

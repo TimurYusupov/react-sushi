@@ -10,6 +10,10 @@
       margin-bottom: 0;
    }
 
+   @media (min-width: 1215px) {
+      flex-direction: row;
+   }
+
    img {
       width: 290px;
 
@@ -35,23 +39,27 @@
             font-size: 15px;
          }
 
-         .portion {
+         .portion,
+         .vegan,
+         .spicy {
             display: inline;
             padding: 3px 4px;
-            background-color: rgba(179, 179, 179, 1.0);
             color: #fff;
             font-size: 12px;
             margin-right: 3px;
             border-radius: 3px;
          }
 
+         .portion {
+            background-color: rgba(179, 179, 179, 1.0);
+         }
+
          .vegan {
-            display: inline;
-            padding: 3px 4px;
             background-color: darkseagreen;
-            color: #fff;
-            font-size: 12px;
-            border-radius: 3px;
+         }
+
+         .spicy {
+            background-color: #F7B033;
          }
       }
 
