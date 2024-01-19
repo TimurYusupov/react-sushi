@@ -1,4 +1,3 @@
-import styles from './Skeleton.module.scss'
 import ContentLoader from 'react-content-loader'
 
 const Skeleton = () => {

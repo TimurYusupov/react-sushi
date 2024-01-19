@@ -12,7 +12,8 @@ import Categories from '../../components/Categories/Categories'
 import Sort from '../../components/Sort/Sort'
 import SushiCard from '../../components/SushiCard/SushiCard'
 import Pagination from '../../components/Pagination/Pagination'
-import Skeleton from '../../components/SushiCard/Skeleton/Skeleton'
+import Skeleton from '../../components/SushiCard/Skeletons/Skeleton'
+import TabletSkeleton from '../../components/SushiCard/Skeletons/TabletSkeleton'
 
 import styles from './Home.module.scss'
 
@@ -36,7 +37,8 @@ const Home = () => {
    const categoriesList = ['All', 'Single', 'Maki', 'Rolls', 'Bento', 'Plates']
 
    const screenWidth = window.innerWidth
-   const skeletons = Array(6).fill(<Skeleton />)
+   const skeletons =
+      screenWidth < 1215 ? Array(6).fill(<TabletSkeleton />) : Array(6).fill(<Skeleton />)
    const sushiBlocks = slicedSushi.map((item) => <SushiCard key={item.id} {...item} />)
 
    const selectCategory = (c) => {
