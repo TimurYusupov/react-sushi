@@ -1,6 +1,10 @@
-import { createSlice } from '@reduxjs/toolkit'
+import { createSlice, PayloadAction } from '@reduxjs/toolkit'
 
-const initialState = {
+export type headerSliceState = {
+   searchValue?: string
+}
+
+const initialState: headerSliceState = {
    searchValue: ''
 }
 
@@ -8,7 +12,7 @@ const headerSlice = createSlice({
    name: 'header',
    initialState,
    reducers: {
-      setSearchValue(state, action) {
+      setSearchValue(state, action: PayloadAction<string>) {
          state.searchValue = action.payload
       }
    }

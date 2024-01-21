@@ -1,19 +1,19 @@
 import { useState, useRef } from 'react'
-import { useDispatch } from 'react-redux'
+import { useAppDispatch } from '../../redux/store'
 import { setSearchValue } from '../../redux/slice/headerSlice'
 import { setCurrentPage } from '../../redux/slice/homeSlice'
 
 import styles from './Search.module.scss'
 
-const Search = () => {
-   const dispatch = useDispatch()
+const Search: React.FC = () => {
+   const dispatch = useAppDispatch()
    const [searchInput, setSearchInput] = useState('')
 
-   const inputRef = useRef()
+   const inputRef = useRef<HTMLInputElement | null>(null)
 
    const clearInput = () => {
       setSearchInput('')
-      inputRef.current.focus()
+      inputRef.current?.focus()
    }
 
    const findPizza = () => {
@@ -35,7 +35,9 @@ const Search = () => {
                placeholder="Find sushi"
                ref={inputRef}
                value={searchInput}
-               onChange={(e) => setSearchInput(e.target.value)}
+               onChange={(e: React.ChangeEvent<HTMLInputElement>) =>
+                  setSearchInput(e.target.value)
+               }
             />
             {searchInput && (
                <img
