@@ -7,7 +7,7 @@ import NotFound from './pages/NotFound/NotFound'
 
 import './styles/App.scss'
 
-const App = () => {
+const App: React.FC = () => {
    return (
       <div className="wrapper">
          <Header />
