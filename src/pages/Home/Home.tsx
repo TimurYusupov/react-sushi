@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 
 import {
+   TSushiData,
    fetchSushi,
    setCategory,
    setCurrentPage,
@@ -16,12 +17,18 @@ import Skeleton from '../../components/SushiCard/Skeletons/Skeleton'
 import TabletSkeleton from '../../components/SushiCard/Skeletons/TabletSkeleton'
 
 import styles from './Home.module.scss'
+import { RootState, useAppDispatch } from '../../redux/store'
+
+export type TSortItem = {
+   name: string
+   sortProperty: string
+}
 
 const Home = () => {
-   const dispatch = useDispatch()
-   const { searchValue } = useSelector((state) => state.headerSlice)
+   const dispatch = useAppDispatch()
+   const { searchValue } = useSelector((state: RootState) => state.headerSlice)
    const { sushiData, category, sort, currentPage, itemsPerPage, totalPages, status } =
-      useSelector((state) => state.homeSlice)
+      useSelector((state: RootState) => state.homeSlice)
 
    const [isPopupOpened, setIsPopupOpened] = useState(false)
    const [rotateArrow, setRotateArrow] = useState(false)
@@ -34,19 +41,21 @@ const Home = () => {
    const categoryParam = `${category > 0 ? `&category=${category}` : ''}`
    const searchParam = `${searchValue ? `&title=*${searchValue}*` : ''}`
 
-   const categoriesList = ['All', 'Single', 'Maki', 'Rolls', 'Bento', 'Plates']
+   const categoriesList: string[] = ['All', 'Single', 'Maki', 'Rolls', 'Bento', 'Plates']
 
    const screenWidth = window.innerWidth
    const skeletons =
       screenWidth < 1215 ? Array(6).fill(<TabletSkeleton />) : Array(6).fill(<Skeleton />)
-   const sushiBlocks = slicedSushi.map((item) => <SushiCard key={item.id} {...item} />)
+   const sushiBlocks = slicedSushi.map((item: TSushiData) => (
+      <SushiCard key={item.id} {...item} />
+   ))
 
-   const selectCategory = (c) => {
+   const selectCategory = (c: number) => {
       dispatch(setCategory(c))
       dispatch(setCurrentPage(1))
    }
 
-   const changeSort = (sortObj) => {
+   const changeSort = (sortObj: TSortItem) => {
       dispatch(setSort(sortObj))
    }
 

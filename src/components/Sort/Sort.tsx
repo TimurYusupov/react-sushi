@@ -1,7 +1,19 @@
 import { useEffect, useRef } from 'react'
-import styles from './Sort.module.scss'
 
-const Sort = ({
+import styles from './Sort.module.scss'
+import { TSort } from '../../redux/slice/homeSlice'
+import { TSortItem } from '../../pages/Home/Home'
+
+type TSortProps = {
+   isPopupOpened: boolean
+   setIsPopupOpened: (value: boolean) => void
+   rotateArrow: boolean
+   setRotateArrow: (value: boolean) => void
+   sort: TSort
+   changeSort: (obj: TSortItem) => void
+}
+
+const Sort: React.FC<TSortProps> = ({
    isPopupOpened,
    setIsPopupOpened,
    rotateArrow,
@@ -9,9 +21,9 @@ const Sort = ({
    sort,
    changeSort
 }) => {
-   const sortRef = useRef()
+   const sortRef = useRef<HTMLDivElement | null>(null)
 
-   const sortList = [
+   const sortList: TSortItem[] = [
       {
          name: 'Name',
          sortProperty: 'title'
@@ -31,15 +43,15 @@ const Sort = ({
       setIsPopupOpened(!isPopupOpened)
    }
 
-   const selectSort = (obj) => {
+   const selectSort = (obj: TSortItem) => {
       changeSort(obj)
       setIsPopupOpened(false)
       setRotateArrow(false)
    }
 
    useEffect(() => {
-      const handleClickOutside = (e) => {
-         if (!sortRef.current.contains(e.target)) {
+      const handleClickOutside = (e: MouseEvent) => {
+         if (sortRef.current && !sortRef.current.contains(e.target as Node)) {
             setIsPopupOpened(false)
             setRotateArrow(false)
          }
