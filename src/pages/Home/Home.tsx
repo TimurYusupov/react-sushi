@@ -47,6 +47,7 @@ const Home = () => {
 
    const skeletons =
       screenWidth < 1215 ? Array(6).fill(<TabletSkeleton />) : Array(6).fill(<Skeleton />)
+
    const sushiBlocks = slicedSushi.map((item: TSushiData) => (
       <SushiCard key={item.id} {...item} />
    ))

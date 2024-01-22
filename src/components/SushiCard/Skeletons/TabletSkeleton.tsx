@@ -1,6 +1,6 @@
 import ContentLoader from 'react-content-loader'
 
-const TabletSkeleton = () => {
+const TabletSkeleton: React.FC = () => {
    return (
       <ContentLoader
          speed={3}
