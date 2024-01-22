@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import { useDispatch, useSelector } from 'react-redux'
+import { useSelector } from 'react-redux'
 
 import {
    TSushiData,
@@ -44,6 +44,7 @@ const Home = () => {
    const categoriesList: string[] = ['All', 'Single', 'Maki', 'Rolls', 'Bento', 'Plates']
 
    const screenWidth = window.innerWidth
+
    const skeletons =
       screenWidth < 1215 ? Array(6).fill(<TabletSkeleton />) : Array(6).fill(<Skeleton />)
    const sushiBlocks = slicedSushi.map((item: TSushiData) => (

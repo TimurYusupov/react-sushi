@@ -1,6 +1,26 @@
 import styles from './SushiCard.module.scss'
 
-const SushiCard = ({ id, title, price, count, img, portionSize, vegan, spicy }) => {
+type TSushiCardProps = {
+   id: Number
+   title: string
+   price: number
+   count: number
+   img: string
+   portionSize: number
+   vegan: boolean
+   spicy: boolean
+}
+
+const SushiCard: React.FC<TSushiCardProps> = ({
+   id,
+   title,
+   price,
+   count,
+   img,
+   portionSize,
+   vegan,
+   spicy
+}) => {
    return (
       <article className={styles.sushiCard}>
          <img src={img} alt={title} />
