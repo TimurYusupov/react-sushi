@@ -8,14 +8,24 @@
    }
 
    button {
-      width: 45px;
-      height: 45px;
+      width: 38px;
+      height: 38px;
       font-size: 17px;
       color: #fe5f1e;
       border: 1px solid #fe5f1e;
       border-radius: 30px;
       cursor: pointer;
       transition: all 0.2s ease-in-out;
+
+      @media (min-width: 770px) {
+         width: 42px;
+         height: 42px;
+      }
+
+      @media (min-width: 950px) {
+         width: 45px;
+         height: 45px;
+      }
 
       &:hover {
          background-color: #fe5f1e;
