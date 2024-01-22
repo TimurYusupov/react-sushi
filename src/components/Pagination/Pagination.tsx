@@ -1,12 +1,18 @@
 import styles from './Pagination.module.scss'
+
 import { setCurrentPage } from '../../redux/slice/homeSlice'
 import { useDispatch, useSelector } from 'react-redux'
+import { RootState } from '../../redux/store'
 
-const Pagination = ({ totalPages }) => {
+type TPaginationProps = {
+   totalPages: number
+}
+
+const Pagination: React.FC<TPaginationProps> = ({ totalPages }) => {
    const dispatch = useDispatch()
-   const { currentPage } = useSelector((state) => state.homeSlice)
+   const { currentPage } = useSelector((state: RootState) => state.homeSlice)
 
-   const pageNumbers = []
+   const pageNumbers: number[] = []
 
    for (let i = 0; i < totalPages; i++) {
       pageNumbers.push(i + 1)

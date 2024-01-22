@@ -1,12 +1,12 @@
 import styles from './Categories.module.scss'
 
-type CategoriesProps = {
+type TCategoriesProps = {
    category: number
    selectCategory: (i: number) => void
    categoriesList: string[]
 }
 
-const Categories: React.FC<CategoriesProps> = ({
+const Categories: React.FC<TCategoriesProps> = ({
    category,
    selectCategory,
    categoriesList
