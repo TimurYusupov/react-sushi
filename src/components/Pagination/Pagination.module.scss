@@ -1,6 +1,11 @@
 .pageButtons {
    display: flex;
+   justify-content: center;
    gap: 5px;
+
+   @media (min-width: 950px) {
+      justify-content: start;
+   }
 
    button {
       width: 45px;
