@@ -1,0 +1,14 @@
+.notFoundTitle {
+    margin: 80px 0 200px;
+    text-align: center;
+    font-size: 28px;
+
+    @media (min-width: 550px) {
+        font-size: 30px;
+    }
+
+    @media (min-width: 1100px) {
+        margin: 150px 0 200px;
+        font-size: 30px;
+    }
+}
