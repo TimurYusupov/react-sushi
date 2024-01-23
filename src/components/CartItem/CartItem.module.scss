@@ -5,29 +5,44 @@
    align-items: center;
    justify-content: space-between;
 
-   &Img {
+   .mainInfo {
       img {
+         width: 130px;
+         height: 90px;
+      }
+
+      h3 {
+         font-weight: bold;
+         font-size: 18px;
+         line-height: 27px;
+         letter-spacing: 0.01em;
+      }
+
+      // display: flex;
+      // align-items: center;
+
+      /* img {
          width: 210px;
          height: 150px;
-      }
-   }
+      } */
 
-   &Info {
-      h3 {
+      /* h3 {
          font-weight: bold;
          font-size: 22px;
          line-height: 27px;
          letter-spacing: 0.01em;
-      }
+      } */
    }
 
    &Count {
       display: flex;
       align-items: center;
-      gap: 10px;
+      // gap: 10px;
+      gap: 5px;
 
       .buttonCart {
-         padding: 6px 10px;
+         // padding: 6px 10px;
+         padding: 3px 7px;
          background-color: #fff;
          border: 2px solid $orange;
          border-radius: 25px;
@@ -57,19 +72,22 @@
       }
 
       b {
-         font-size: 22px;
+         // font-size: 22px;
+         font-size: 18px;
       }
    }
 
    &Price {
       font-weight: bold;
-      font-size: 22px;
+      // font-size: 22px;
+      font-size: 18px;
       letter-spacing: 0.01em;
    }
 
    &Remove {
       .removeButton {
-         padding: 6px 10px;
+         // padding: 6px 10px;
+         padding: 3px 7px;
          background-color: #fff;
          border: 2px solid darken($color: $gray-line, $amount: 10);
          border-radius: 25px;

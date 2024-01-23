@@ -3,11 +3,9 @@ import styles from './CartItem.module.scss'
 const CartItem: React.FC = () => {
    return (
       <div className={styles.cartItem}>
-         <div className={styles.cartItemImg}>
+         <div className={styles.mainInfo}>
             <img src="/img/sushi/avocado.jpg" alt="cart item" />
-         </div>
-         <div className={styles.cartItemInfo}>
-            <h3>Title</h3>
+            <h3>Maguro Tuna maki</h3>
          </div>
          <div className={styles.cartItemCount}>
             <button className={`button ${styles.buttonCart} ${styles.minus}`}>
@@ -28,7 +26,7 @@ const CartItem: React.FC = () => {
                   />
                </svg>
             </button>
-            <b>count</b>
+            <b>1</b>
             <button className={`button ${styles.buttonCart} ${styles.plus}`}>
                <svg
                   width="10"
@@ -48,7 +46,7 @@ const CartItem: React.FC = () => {
                </svg>
             </button>
          </div>
-         <div className={styles.cartItemPrice}>120 €</div>
+         <div className={styles.cartItemPrice}>20 €</div>
          <div className={styles.cartItemRemove}>
             <button className={`button ${styles.removeButton}`}>
                <svg

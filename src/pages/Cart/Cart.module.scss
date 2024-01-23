@@ -1,8 +1,12 @@
 .cart {
+   max-width: 820px;
+   margin: 90px auto;
+
    &Top {
       display: flex;
       align-items: center;
       justify-content: space-between;
+      margin-bottom: 30px;
 
       h1 {
          display: flex;
