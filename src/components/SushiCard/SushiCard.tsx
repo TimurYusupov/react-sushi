@@ -22,8 +22,6 @@ const SushiCard: React.FC<TSushiCardProps> = ({
    vegan,
    spicy
 }) => {
-   const dispatch = useAppDispatch()
-
    const addToCart = async (title: string, img: string, price: number, count: number) => {
       await fetch('https://518e0d814bf9a511.mokky.dev/cartItems', {
          method: 'POST',
