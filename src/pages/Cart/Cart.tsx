@@ -1,6 +1,7 @@
 import { Link } from 'react-router-dom'
 import CartItem from '../../components/CartItem/CartItem'
 import styles from './Cart.module.scss'
+import { useEffect } from 'react'
 
 const Cart: React.FC = () => {
    return (
@@ -53,7 +54,6 @@ const Cart: React.FC = () => {
             </div>
 
             <div className={styles.cartItems}>
-               <CartItem />
                <CartItem />
             </div>
 

@@ -1,7 +1,8 @@
+import { useAppDispatch } from '../../redux/store'
 import styles from './SushiCard.module.scss'
 
 type TSushiCardProps = {
-   id: Number
+   id: number
    title: string
    price: number
    count: number
@@ -21,6 +22,23 @@ const SushiCard: React.FC<TSushiCardProps> = ({
    vegan,
    spicy
 }) => {
+   const dispatch = useAppDispatch()
+
+   const addToCart = async (title: string, img: string, price: number, count: number) => {
+      await fetch('https://518e0d814bf9a511.mokky.dev/cartItems', {
+         method: 'POST',
+         headers: {
+            'Content-Type': 'application/json'
+         },
+         body: JSON.stringify({
+            title,
+            img,
+            price,
+            count
+         })
+      })
+   }
+
    return (
       <article className={styles.sushiCard}>
          <img src={img} alt={title} />
@@ -32,7 +50,10 @@ const SushiCard: React.FC<TSushiCardProps> = ({
                {vegan && <p className={styles.vegan}>vegan</p>}
                {spicy && <p className={styles.spicy}>spicy</p>}
             </div>
-            <button className={`button ${styles.btn}`} onClick={() => console.log(id)}>
+            <button
+               className={`button ${styles.btn}`}
+               onClick={() => addToCart(title, img, price, count)}
+            >
                <svg
                   width="12"
                   height="12"
