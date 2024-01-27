@@ -1,15 +1,15 @@
-import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
+import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
-export type TCartItems = {
+export type TCartItem = {
+   id: number
    title: string
    img: string
    price: number
    count: number
-   id: number
 }
 
 type TCartSliceState = {
-   cartItems: TCartItems[]
+   cartItems: TCartItem[]
    totalPrice: number
    status: string
 }
@@ -20,31 +20,24 @@ const initialState: TCartSliceState = {
    status: 'loading'
 }
 
-export const fetchCartItems = createAsyncThunk('homeSlice/fetchCartItems', async () => {
-   const res = await fetch('https://518e0d814bf9a511.mokky.dev/cartItems')
-   const data = await res.json()
-   return data
-})
-
 const cartSlice = createSlice({
    name: 'cart',
    initialState,
-   reducers: {},
-   extraReducers: (builder) => {
-      builder.addCase(fetchCartItems.pending, (state) => {
-         state.status = 'loading'
-         state.cartItems = []
-      })
-      builder.addCase(fetchCartItems.fulfilled, (state, action) => {
-         state.status = 'success'
-         state.cartItems = action.payload
-      })
-      builder.addCase(fetchCartItems.rejected, (state) => {
-         state.status = 'error'
-         state.cartItems = []
-      })
+   reducers: {
+      addToCart(state, action: PayloadAction<TCartItem>) {
+         const foundItem = state.cartItems.find((item) => item.id === action.payload.id)
+
+         if (foundItem) {
+            foundItem.count++
+         } else {
+            state.cartItems.push({
+               ...action.payload,
+               count: 1
+            })
+         }
+      }
    }
 })
 
-// export const {} = cartSlice.actions
+export const { addToCart } = cartSlice.actions
 export default cartSlice.reducer

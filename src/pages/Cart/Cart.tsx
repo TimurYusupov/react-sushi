@@ -1,20 +1,16 @@
 import { Link } from 'react-router-dom'
-import CartItem from '../../components/CartItem/CartItem'
-import styles from './Cart.module.scss'
 import { RootState, useAppDispatch } from '../../redux/store'
-import { useEffect } from 'react'
-import { fetchCartItems } from '../../redux/slice/cartSlice'
 import { useSelector } from 'react-redux'
+
+import CartItem from '../../components/CartItem/CartItem'
+
+import styles from './Cart.module.scss'
 
 const Cart: React.FC = () => {
    const dispatch = useAppDispatch()
    const { cartItems } = useSelector((state: RootState) => state.cartSlice)
 
-   console.log(cartItems)
-
-   useEffect(() => {
-      dispatch(fetchCartItems())
-   }, [dispatch])
+   const totalCount = cartItems.reduce((sum, item) => sum + item.count, 0)
 
    return (
       <div className="container">
@@ -74,7 +70,7 @@ const Cart: React.FC = () => {
             <div className={styles.cartBottom}>
                <div className={styles.cartBottomDetails}>
                   <span>
-                     Total Sushi: <b>0 шт.</b>
+                     Total Sushi: <b>{totalCount} шт.</b>
                   </span>
                   <span>
                      Order Price: <b className="orange">250 €</b>

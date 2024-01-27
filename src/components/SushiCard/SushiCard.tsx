@@ -1,9 +1,12 @@
+import { TCartItem, addToCart } from '../../redux/slice/cartSlice'
+import { RootState, useAppDispatch } from '../../redux/store'
 import styles from './SushiCard.module.scss'
+import { useSelector } from 'react-redux'
 
 type TSushiCardProps = {
+   id: number
    title: string
    price: number
-   count: number
    img: string
    portionSize: number
    vegan: boolean
@@ -11,27 +14,29 @@ type TSushiCardProps = {
 }
 
 const SushiCard: React.FC<TSushiCardProps> = ({
+   id,
    title,
    price,
-   count,
    img,
    portionSize,
    vegan,
    spicy
 }) => {
-   const addToCart = async (title: string, img: string, price: number, count: number) => {
-      await fetch('https://518e0d814bf9a511.mokky.dev/cartItems', {
-         method: 'POST',
-         headers: {
-            'Content-Type': 'application/json'
-         },
-         body: JSON.stringify({
-            title,
-            img,
-            price,
-            count
-         })
-      })
+   const dispatch = useAppDispatch()
+   const { cartItems } = useSelector((state: RootState) => state.cartSlice)
+
+   const cartItem = cartItems.find((item) => item.id === id)
+
+   const addItemToCart = () => {
+      const item: TCartItem = {
+         id,
+         title,
+         img,
+         price,
+         count: 0
+      }
+
+      dispatch(addToCart(item))
    }
 
    return (
@@ -45,10 +50,7 @@ const SushiCard: React.FC<TSushiCardProps> = ({
                {vegan && <p className={styles.vegan}>vegan</p>}
                {spicy && <p className={styles.spicy}>spicy</p>}
             </div>
-            <button
-               className={`button ${styles.btn}`}
-               onClick={() => addToCart(title, img, price, count)}
-            >
+            <button className={`button ${styles.btn}`} onClick={addItemToCart}>
                <svg
                   width="12"
                   height="12"
@@ -62,7 +64,9 @@ const SushiCard: React.FC<TSushiCardProps> = ({
                   />
                </svg>
                Add
-               {count > 0 && <span className={styles.sushiCount}>{count}</span>}
+               {cartItem && cartItem.count > 0 && (
+                  <span className={styles.sushiCount}>{cartItem.count}</span>
+               )}
             </button>
          </div>
       </article>
