@@ -66,7 +66,9 @@ const Cart: React.FC = () => {
             </div>
 
             <div className={styles.cartItems}>
-               <CartItem />
+               {cartItems.map((item) => (
+                  <CartItem key={item.id} {...item} />
+               ))}
             </div>
 
             <div className={styles.cartBottom}>

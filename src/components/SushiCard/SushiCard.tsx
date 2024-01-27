@@ -2,7 +2,6 @@ import { useAppDispatch } from '../../redux/store'
 import styles from './SushiCard.module.scss'
 
 type TSushiCardProps = {
-   id: number
    title: string
    price: number
    count: number
@@ -13,7 +12,6 @@ type TSushiCardProps = {
 }
 
 const SushiCard: React.FC<TSushiCardProps> = ({
-   id,
    title,
    price,
    count,
