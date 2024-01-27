@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { RootState, useAppDispatch } from '../../redux/store'
+import { RootState } from '../../redux/store'
 import { useSelector } from 'react-redux'
 
 import CartItem from '../../components/CartItem/CartItem'
@@ -7,7 +7,6 @@ import CartItem from '../../components/CartItem/CartItem'
 import styles from './Cart.module.scss'
 
 const Cart: React.FC = () => {
-   const dispatch = useAppDispatch()
    const { cartItems } = useSelector((state: RootState) => state.cartSlice)
 
    const totalCount = cartItems.reduce((sum, item) => sum + item.count, 0)
