@@ -1,4 +1,3 @@
-import { useAppDispatch } from '../../redux/store'
 import styles from './SushiCard.module.scss'
 
 type TSushiCardProps = {
