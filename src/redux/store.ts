@@ -3,11 +3,13 @@ import { useDispatch } from 'react-redux'
 
 import headerSlice from './slice/headerSlice'
 import homeSlice from './slice/homeSlice'
+import cartSlice from './slice/cartSlice'
 
 export const store = configureStore({
    reducer: {
       headerSlice,
-      homeSlice
+      homeSlice,
+      cartSlice
    }
 })
 

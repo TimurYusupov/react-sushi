@@ -60,13 +60,6 @@ export const fetchSushi = createAsyncThunk(
    }
 )
 
-/* export const addItemToCart = createAsyncThunk(
-   'homeSlice/addItemToCart',
-   async(params:any) => {
-
-   }
-) */
-
 const homeSlice = createSlice({
    name: 'home',
    initialState,

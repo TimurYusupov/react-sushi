@@ -1,8 +1,21 @@
 import { Link } from 'react-router-dom'
 import CartItem from '../../components/CartItem/CartItem'
 import styles from './Cart.module.scss'
+import { RootState, useAppDispatch } from '../../redux/store'
+import { useEffect } from 'react'
+import { fetchCartItems } from '../../redux/slice/cartSlice'
+import { useSelector } from 'react-redux'
 
 const Cart: React.FC = () => {
+   const dispatch = useAppDispatch()
+   const { cartItems } = useSelector((state: RootState) => state.cartSlice)
+
+   console.log(cartItems)
+
+   useEffect(() => {
+      dispatch(fetchCartItems())
+   }, [dispatch])
+
    return (
       <div className="container">
          <section className={styles.cart}>
