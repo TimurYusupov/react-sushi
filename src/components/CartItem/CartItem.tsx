@@ -1,4 +1,4 @@
-import { TCartItem, addItem, minusItem, removeItem } from '../../redux/slice/cartSlice'
+import { addItem, minusItem, removeItem } from '../../redux/slice/cartSlice'
 import { useAppDispatch } from '../../redux/store'
 import styles from './CartItem.module.scss'
 
