@@ -1,15 +1,22 @@
 import { Link } from 'react-router-dom'
-import { RootState } from '../../redux/store'
+import { RootState, useAppDispatch } from '../../redux/store'
 import { useSelector } from 'react-redux'
+import { clearItems } from '../../redux/slice/cartSlice'
 
 import CartItem from '../../components/CartItem/CartItem'
 
 import styles from './Cart.module.scss'
 
 const Cart: React.FC = () => {
+   const dispatch = useAppDispatch()
    const { cartItems } = useSelector((state: RootState) => state.cartSlice)
 
    const totalCount = cartItems.reduce((sum, item) => sum + item.count, 0)
+   const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.count, 0)
+
+   const cleanCart = () => {
+      dispatch(clearItems())
+   }
 
    return (
       <div className="container">
@@ -19,7 +26,7 @@ const Cart: React.FC = () => {
                   <img src="/img/cart/shopping-cart.png" alt="Cart" />
                   Cart
                </h1>
-               <div className={styles.cartClear}>
+               <div className={styles.cartClear} onClick={cleanCart}>
                   <svg
                      width="20"
                      height="20"
@@ -69,10 +76,10 @@ const Cart: React.FC = () => {
             <div className={styles.cartBottom}>
                <div className={styles.cartBottomDetails}>
                   <span>
-                     Total Sushi: <b>{totalCount} шт.</b>
+                     Total Sushi: <b>{totalCount} pcs.</b>
                   </span>
                   <span>
-                     Order Price: <b className="orange">250 €</b>
+                     Order Price: <b className="orange">{totalPrice.toFixed(2)} €</b>
                   </span>
                </div>
             </div>

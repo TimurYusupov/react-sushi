@@ -1,13 +1,38 @@
+import { TCartItem, addItem, minusItem, removeItem } from '../../redux/slice/cartSlice'
+import { useAppDispatch } from '../../redux/store'
 import styles from './CartItem.module.scss'
 
 type TCartItemProps = {
+   id: number
    title: string
    img: string
    price: number
    count: number
 }
 
-const CartItem: React.FC<TCartItemProps> = ({ title, img, price, count }) => {
+const CartItem: React.FC<TCartItemProps> = ({ id, title, img, price, count }) => {
+   const dispatch = useAppDispatch()
+
+   const increaseCount = () => {
+      const item = {
+         id,
+         title,
+         img,
+         price,
+         count
+      }
+
+      dispatch(addItem(item))
+   }
+
+   const decreaseCount = () => {
+      dispatch(minusItem(id))
+   }
+
+   const removeFromCart = () => {
+      dispatch(removeItem(id))
+   }
+
    return (
       <div className={styles.cartItem}>
          <div className={styles.mainInfo}>
@@ -15,7 +40,10 @@ const CartItem: React.FC<TCartItemProps> = ({ title, img, price, count }) => {
             <h3>{title}</h3>
          </div>
          <div className={styles.cartItemCount}>
-            <button className={`button ${styles.buttonCart} ${styles.minus}`}>
+            <button
+               className={`button ${styles.buttonCart} ${styles.minus}`}
+               onClick={decreaseCount}
+            >
                <svg
                   width="10"
                   height="10"
@@ -34,7 +62,10 @@ const CartItem: React.FC<TCartItemProps> = ({ title, img, price, count }) => {
                </svg>
             </button>
             <b>{count}</b>
-            <button className={`button ${styles.buttonCart} ${styles.plus}`}>
+            <button
+               className={`button ${styles.buttonCart} ${styles.plus}`}
+               onClick={increaseCount}
+            >
                <svg
                   width="10"
                   height="10"
@@ -53,9 +84,9 @@ const CartItem: React.FC<TCartItemProps> = ({ title, img, price, count }) => {
                </svg>
             </button>
          </div>
-         <div className={styles.cartItemPrice}>{price.toFixed(2)} €</div>
+         <div className={styles.cartItemPrice}>{(price * count).toFixed(2)} €</div>
          <div className={styles.cartItemRemove}>
-            <button className={`button ${styles.removeButton}`}>
+            <button className={`button ${styles.removeButton}`} onClick={removeFromCart}>
                <svg
                   width="10"
                   height="10"

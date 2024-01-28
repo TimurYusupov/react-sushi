@@ -1,7 +1,8 @@
-import { TCartItem, addToCart } from '../../redux/slice/cartSlice'
+import { TCartItem, addItem } from '../../redux/slice/cartSlice'
 import { RootState, useAppDispatch } from '../../redux/store'
-import styles from './SushiCard.module.scss'
 import { useSelector } from 'react-redux'
+
+import styles from './SushiCard.module.scss'
 
 type TSushiCardProps = {
    id: number
@@ -36,7 +37,7 @@ const SushiCard: React.FC<TSushiCardProps> = ({
          count: 0
       }
 
-      dispatch(addToCart(item))
+      dispatch(addItem(item))
    }
 
    return (
