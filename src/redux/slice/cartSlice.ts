@@ -19,7 +19,7 @@ type TCartSliceState = {
 }
 
 const initialState: TCartSliceState = {
-   cartItems: [],
+   cartItems: JSON.parse(localStorage.getItem('cartItems') ?? '[]'),
    totalPrice: Number(localStorage.getItem('totalPrice')) || 0,
    totalCount: Number(localStorage.getItem('totalCount')) || 0,
    status: 'loading'
@@ -44,6 +44,7 @@ const cartSlice = createSlice({
          state.totalPrice = calcTotalPrice(state.cartItems)
          state.totalCount = calcTotalCount(state.cartItems)
 
+         localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
          localStorage.setItem('totalPrice', state.totalPrice.toString())
          localStorage.setItem('totalCount', state.totalCount.toString())
       },
@@ -63,6 +64,7 @@ const cartSlice = createSlice({
          state.totalPrice = calcTotalPrice(state.cartItems)
          state.totalCount = calcTotalCount(state.cartItems)
 
+         localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
          localStorage.setItem('totalPrice', state.totalPrice.toString())
          localStorage.setItem('totalCount', state.totalCount.toString())
       },
@@ -72,15 +74,16 @@ const cartSlice = createSlice({
          state.totalPrice = calcTotalPrice(state.cartItems)
          state.totalCount = calcTotalCount(state.cartItems)
 
+         localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
          localStorage.setItem('totalPrice', state.totalPrice.toString())
          localStorage.setItem('totalCount', state.totalCount.toString())
       },
       clearItems(state) {
          state.cartItems = []
-
          state.totalPrice = 0
          state.totalCount = 0
 
+         localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
          localStorage.setItem('totalPrice', state.totalPrice.toString())
          localStorage.setItem('totalCount', state.totalCount.toString())
       }
