@@ -9,10 +9,10 @@ import styles from './Cart.module.scss'
 
 const Cart: React.FC = () => {
    const dispatch = useAppDispatch()
-   const { cartItems } = useSelector((state: RootState) => state.cartSlice)
 
-   const totalCount = cartItems.reduce((sum, item) => sum + item.count, 0)
-   const totalPrice = cartItems.reduce((sum, item) => sum + item.price * item.count, 0)
+   const { cartItems, totalPrice, totalCount } = useSelector(
+      (state: RootState) => state.cartSlice
+   )
 
    const cleanCart = () => {
       dispatch(clearItems())

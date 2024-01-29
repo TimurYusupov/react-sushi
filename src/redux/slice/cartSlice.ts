@@ -1,5 +1,8 @@
 import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
+import { calcTotalPrice } from '../../utils/calcTotalPrice'
+import { calcTotalCount } from '../../utils/calcTotalCount'
+
 export type TCartItem = {
    id: number
    title: string
@@ -11,12 +14,14 @@ export type TCartItem = {
 type TCartSliceState = {
    cartItems: TCartItem[]
    totalPrice: number
+   totalCount: number
    status: string
 }
 
 const initialState: TCartSliceState = {
    cartItems: [],
    totalPrice: 0,
+   totalCount: 0,
    status: 'loading'
 }
 
@@ -35,6 +40,9 @@ const cartSlice = createSlice({
                count: 1
             })
          }
+
+         state.totalPrice = calcTotalPrice(state.cartItems)
+         state.totalCount = calcTotalCount(state.cartItems)
       },
       minusItem(state, action: PayloadAction<number>) {
          const foundItem = state.cartItems.find((item) => item.id === action.payload)
@@ -48,12 +56,21 @@ const cartSlice = createSlice({
                )
             }
          }
+
+         state.totalPrice = calcTotalPrice(state.cartItems)
+         state.totalCount = calcTotalCount(state.cartItems)
       },
       removeItem(state, action: PayloadAction<number>) {
          state.cartItems = state.cartItems.filter((item) => item.id !== action.payload)
+
+         state.totalPrice = calcTotalPrice(state.cartItems)
+         state.totalCount = calcTotalCount(state.cartItems)
       },
       clearItems(state) {
          state.cartItems = []
+
+         state.totalPrice = 0
+         state.totalCount = 0
       }
    }
 })
