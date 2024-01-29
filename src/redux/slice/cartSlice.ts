@@ -2,6 +2,7 @@ import { PayloadAction, createSlice } from '@reduxjs/toolkit'
 
 import { calcTotalPrice } from '../../utils/calcTotalPrice'
 import { calcTotalCount } from '../../utils/calcTotalCount'
+import { saveToLocalStorage } from '../../utils/saveToLocalStorage'
 
 export type TCartItem = {
    id: number
@@ -11,7 +12,7 @@ export type TCartItem = {
    count: number
 }
 
-type TCartSliceState = {
+export type TCartSliceState = {
    cartItems: TCartItem[]
    totalPrice: number
    totalCount: number
@@ -44,9 +45,7 @@ const cartSlice = createSlice({
          state.totalPrice = calcTotalPrice(state.cartItems)
          state.totalCount = calcTotalCount(state.cartItems)
 
-         localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
-         localStorage.setItem('totalPrice', state.totalPrice.toString())
-         localStorage.setItem('totalCount', state.totalCount.toString())
+         saveToLocalStorage(state)
       },
       minusItem(state, action: PayloadAction<number>) {
          const foundItem = state.cartItems.find((item) => item.id === action.payload)
@@ -64,9 +63,7 @@ const cartSlice = createSlice({
          state.totalPrice = calcTotalPrice(state.cartItems)
          state.totalCount = calcTotalCount(state.cartItems)
 
-         localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
-         localStorage.setItem('totalPrice', state.totalPrice.toString())
-         localStorage.setItem('totalCount', state.totalCount.toString())
+         saveToLocalStorage(state)
       },
       removeItem(state, action: PayloadAction<number>) {
          state.cartItems = state.cartItems.filter((item) => item.id !== action.payload)
@@ -74,18 +71,14 @@ const cartSlice = createSlice({
          state.totalPrice = calcTotalPrice(state.cartItems)
          state.totalCount = calcTotalCount(state.cartItems)
 
-         localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
-         localStorage.setItem('totalPrice', state.totalPrice.toString())
-         localStorage.setItem('totalCount', state.totalCount.toString())
+         saveToLocalStorage(state)
       },
       clearItems(state) {
          state.cartItems = []
          state.totalPrice = 0
          state.totalCount = 0
 
-         localStorage.setItem('cartItems', JSON.stringify(state.cartItems))
-         localStorage.setItem('totalPrice', state.totalPrice.toString())
-         localStorage.setItem('totalCount', state.totalCount.toString())
+         saveToLocalStorage(state)
       }
    }
 })
