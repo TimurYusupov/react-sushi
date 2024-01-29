@@ -20,8 +20,8 @@ type TCartSliceState = {
 
 const initialState: TCartSliceState = {
    cartItems: [],
-   totalPrice: 0,
-   totalCount: 0,
+   totalPrice: Number(localStorage.getItem('totalPrice')) || 0,
+   totalCount: Number(localStorage.getItem('totalCount')) || 0,
    status: 'loading'
 }
 
@@ -43,6 +43,9 @@ const cartSlice = createSlice({
 
          state.totalPrice = calcTotalPrice(state.cartItems)
          state.totalCount = calcTotalCount(state.cartItems)
+
+         localStorage.setItem('totalPrice', state.totalPrice.toString())
+         localStorage.setItem('totalCount', state.totalCount.toString())
       },
       minusItem(state, action: PayloadAction<number>) {
          const foundItem = state.cartItems.find((item) => item.id === action.payload)
@@ -59,18 +62,27 @@ const cartSlice = createSlice({
 
          state.totalPrice = calcTotalPrice(state.cartItems)
          state.totalCount = calcTotalCount(state.cartItems)
+
+         localStorage.setItem('totalPrice', state.totalPrice.toString())
+         localStorage.setItem('totalCount', state.totalCount.toString())
       },
       removeItem(state, action: PayloadAction<number>) {
          state.cartItems = state.cartItems.filter((item) => item.id !== action.payload)
 
          state.totalPrice = calcTotalPrice(state.cartItems)
          state.totalCount = calcTotalCount(state.cartItems)
+
+         localStorage.setItem('totalPrice', state.totalPrice.toString())
+         localStorage.setItem('totalCount', state.totalCount.toString())
       },
       clearItems(state) {
          state.cartItems = []
 
          state.totalPrice = 0
          state.totalCount = 0
+
+         localStorage.setItem('totalPrice', state.totalPrice.toString())
+         localStorage.setItem('totalCount', state.totalCount.toString())
       }
    }
 })
