@@ -6,6 +6,7 @@ import { clearItems } from '../../redux/slice/cartSlice'
 import CartItem from '../../components/CartItem/CartItem'
 
 import styles from './Cart.module.scss'
+import CartEmpty from '../../components/CartEmpty/CartEmpty'
 
 const Cart: React.FC = () => {
    const dispatch = useAppDispatch()
@@ -16,6 +17,10 @@ const Cart: React.FC = () => {
 
    const cleanCart = () => {
       dispatch(clearItems())
+   }
+
+   if (!cartItems.length) {
+      return <CartEmpty />
    }
 
    return (
