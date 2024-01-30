@@ -1,13 +1,14 @@
 import styles from './Header.module.scss'
 
 import { useSelector } from 'react-redux'
-import { Link } from 'react-router-dom'
+import { Link, useLocation } from 'react-router-dom'
 import { RootState } from '../../redux/store'
 
 import Search from '../Search/Search'
 
 const Header: React.FC = () => {
    const { totalPrice, totalCount } = useSelector((state: RootState) => state.cartSlice)
+   const location = useLocation()
 
    return (
       <header>
@@ -20,7 +21,7 @@ const Header: React.FC = () => {
                </div>
             </div>
          </Link>
-         <Search />
+         {location.pathname !== '/cart' && <Search />}
          <Link to="/cart" className="button button--cart">
             <span>{totalPrice.toFixed(2)} €</span>
             <div className="button__divider"></div>
