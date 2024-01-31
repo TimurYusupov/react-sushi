@@ -35,7 +35,7 @@
             width: 400px;
          }
 
-         @media (min-width: 1061px) {
+         @media (min-width: 1044px) {
             width: 330px;
          }
 
@@ -58,8 +58,7 @@
       }
    }
 
-   @media (min-width: 1061px) {
+   @media (min-width: 1044px) {
       order: unset;
-      // margin: 0 15px;
    }
 }
