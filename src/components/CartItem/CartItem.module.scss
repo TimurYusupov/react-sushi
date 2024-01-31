@@ -6,6 +6,8 @@
    justify-content: space-between;
 
    .mainInfo {
+      width: 130px;
+
       img {
          width: 130px;
          height: 90px;
@@ -19,6 +21,7 @@
       }
 
       @media (min-width: 600px) {
+         width: 280px;
          display: flex;
          align-items: center;
 
@@ -28,25 +31,34 @@
          }
       }
 
-      @media (min-width: 700px) {
+      @media (min-width: 900px) {
+         width: 310px;
+
          img {
-            width: 210px;
+            width: 190px;
+            height: 130px;
+         }
+      }
+
+      @media (min-width: 1100px) {
+         width: 360px;
+
+         img {
+            width: 220px;
             height: 150px;
          }
 
          h3 {
-            font-weight: bold;
-            font-size: 22px;
-            line-height: 27px;
-            letter-spacing: 0.01em;
+            font-size: 20px;
          }
       }
    }
 
    &Count {
+      width: 80px;
       display: flex;
       align-items: center;
-      gap: 5px;
+      gap: 3px;
 
       .buttonCart {
          padding: 3px 7px;
@@ -79,36 +91,65 @@
       }
 
       b {
-         // font-size: 22px;
-         font-size: 18px;
+         font-size: 17px;
       }
 
       @media (min-width: 700px) {
-         gap: 10px;
+         width: 90px;
+         gap: 5px;
 
          .buttonCart {
-            padding: 6px 10px;
+            padding: 4px 8px;
          }
 
          b {
-            font-size: 22px;
+            font-size: 18px;
+         }
+      }
+
+      @media (min-width: 900px) {
+         width: 95px;
+
+         .buttonCart {
+            padding: 5px 9px;
+         }
+
+         b {
+            font-size: 19px;
+         }
+      }
+
+      @media (min-width: 1100px) {
+         b {
+            font-size: 20px;
          }
       }
    }
 
    &Price {
+      width: 70px;
       font-weight: bold;
-      font-size: 18px;
+      font-size: 17px;
       letter-spacing: 0.01em;
 
       @media (min-width: 700px) {
-         font-size: 22px;
+         width: 80px;
+         font-size: 18px;
+      }
+
+      @media (min-width: 900px) {
+         width: 85px;
+         font-size: 19px;
+      }
+
+      @media (min-width: 1100px) {
+         font-size: 20px;
       }
    }
 
    &Remove {
       .removeButton {
-         padding: 3px 7px;
+         padding: 2px 6px;
          background-color: #fff;
          border: 2px solid darken($color: $gray-line, $amount: 10);
          border-radius: 25px;
@@ -131,8 +172,16 @@
                background-color: darken($color: $gray-line, $amount: 80);
             }
          }
+      }
 
-         @media (min-width: 700px) {
+      @media (min-width: 700px) {
+         .removeButton {
+            padding: 5px 9px;
+         }
+      }
+
+      @media (min-width: 900px) {
+         .removeButton {
             padding: 6px 10px;
          }
       }
