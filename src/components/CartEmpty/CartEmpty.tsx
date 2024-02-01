@@ -9,9 +9,9 @@ const CartEmpty: React.FC = () => {
             The cart is empty <span>😕</span>
          </h2>
          <p>
-            Most likely, you haven't ordered pizza yet.
+            Most likely, you haven't ordered sushi yet.
             <br />
-            To order pizza, please go to the main page
+            To order sushi, please go to the main page
          </p>
          <img src="/img/cart/empty-cart.png" alt="Empty cart" />
          <Link to="/" className={`${styles.cartEmptyBtn} ${styles.goBackBtn}`}>

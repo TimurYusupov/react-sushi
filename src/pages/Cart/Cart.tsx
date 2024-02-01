@@ -2,11 +2,13 @@ import { Link } from 'react-router-dom'
 import { RootState, useAppDispatch } from '../../redux/store'
 import { useSelector } from 'react-redux'
 import { clearItems } from '../../redux/slice/cartSlice'
+import { ToastContainer } from 'react-toastify'
 
 import CartItem from '../../components/CartItem/CartItem'
+import CartEmpty from '../../components/CartEmpty/CartEmpty'
 
 import styles from './Cart.module.scss'
-import CartEmpty from '../../components/CartEmpty/CartEmpty'
+import 'react-toastify/dist/ReactToastify.css'
 
 const Cart: React.FC = () => {
    const dispatch = useAppDispatch()
@@ -20,11 +22,17 @@ const Cart: React.FC = () => {
    }
 
    if (!cartItems.length) {
-      return <CartEmpty />
+      return (
+         <div>
+            <ToastContainer autoClose={1000} />
+            <CartEmpty />
+         </div>
+      )
    }
 
    return (
       <div className="container">
+         <ToastContainer autoClose={1000} />
          <section className={styles.cart}>
             <div className={styles.cartTop}>
                <h1>

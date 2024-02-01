@@ -1,5 +1,7 @@
+import { toast } from 'react-toastify'
 import { addItem, minusItem, removeItem } from '../../redux/slice/cartSlice'
 import { useAppDispatch } from '../../redux/store'
+
 import styles from './CartItem.module.scss'
 
 type TCartItemProps = {
@@ -31,6 +33,11 @@ const CartItem: React.FC<TCartItemProps> = ({ id, title, img, price, count }) =>
 
    const removeFromCart = () => {
       dispatch(removeItem(id))
+      toast.success(
+         <span>
+            <b>{title.toUpperCase()} deleted from cart</b>
+         </span>
+      )
    }
 
    return (
