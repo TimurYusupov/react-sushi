@@ -40,7 +40,11 @@ const SushiCard: React.FC<TSushiCardProps> = ({
       }
 
       dispatch(addItem(item))
-      toast.success(`${title.toUpperCase()} added into cart`)
+      toast.success(
+         <span>
+            <strong>{title.toUpperCase()}</strong> added into cart
+         </span>
+      )
    }
 
    return (
