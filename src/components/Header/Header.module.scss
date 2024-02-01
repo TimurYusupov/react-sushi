@@ -12,7 +12,8 @@ header {
       display: flex;
 
       img {
-         margin-right: 10px;
+         margin-right: 4px;
+         width: 31px;
       }
 
       .title {
@@ -28,8 +29,23 @@ header {
             font-size: 13px;
             color: #7b7b7b;
          }
+      }
+   }
 
-         @media (min-width: 500px) {
+   @media (min-width: 380px) {
+      .logo {
+         img {
+            margin-right: 10px;
+            width: 38px;
+         }
+      }
+   }
+
+   @media (min-width: 500px) {
+      padding: 30px 20px;
+
+      .logo {
+         .title {
             h2 {
                font-size: 24px;
             }
@@ -40,10 +56,6 @@ header {
             }
          }
       }
-   }
-
-   @media (min-width: 500px) {
-      padding: 30px 20px;
    }
 
    @media (min-width: 750px) {
