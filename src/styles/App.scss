@@ -88,6 +88,14 @@ h5 {
             font-size: 15px;
          }
       }
+
+      @media (min-width: 900px) {
+         padding: 12px 30px;
+
+         span {
+            font-size: 15px;
+         }
+      }
    }
 
    &__divider {

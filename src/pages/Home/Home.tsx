@@ -16,8 +16,11 @@ import Pagination from '../../components/Pagination/Pagination'
 import Skeleton from '../../components/SushiCard/Skeletons/Skeleton'
 import TabletSkeleton from '../../components/SushiCard/Skeletons/TabletSkeleton'
 
-import styles from './Home.module.scss'
 import { RootState, useAppDispatch } from '../../redux/store'
+import { ToastContainer } from 'react-toastify'
+
+import styles from './Home.module.scss'
+import 'react-toastify/dist/ReactToastify.css'
 
 export type TSortItem = {
    name: string
@@ -69,6 +72,7 @@ const Home = () => {
 
    return (
       <div className="container">
+         <ToastContainer autoClose={1000} />
          <section className={styles.categoriesSort}>
             <Categories
                category={category}

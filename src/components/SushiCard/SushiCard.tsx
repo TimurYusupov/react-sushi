@@ -1,3 +1,5 @@
+import { toast } from 'react-toastify'
+
 import { TCartItem, addItem } from '../../redux/slice/cartSlice'
 import { RootState, useAppDispatch } from '../../redux/store'
 import { useSelector } from 'react-redux'
@@ -38,6 +40,7 @@ const SushiCard: React.FC<TSushiCardProps> = ({
       }
 
       dispatch(addItem(item))
+      toast.success('Added into cart')
    }
 
    return (
