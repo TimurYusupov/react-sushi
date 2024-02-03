@@ -55,7 +55,9 @@ const SushiCard: React.FC<TSushiCardProps> = ({
          </Link>
          <div className={styles.rightSide}>
             <div className={styles.info}>
-               <h3 className={styles.name}>{title}</h3>
+               <Link to={`/item/${id}`}>
+                  <h3 className={styles.name}>{title}</h3>
+               </Link>
                <p className={styles.price}>EUR {price.toFixed(2)}</p>
                {portionSize > 0 && <p className={styles.portion}>{portionSize} pcs</p>}
                {vegan && <p className={styles.vegan}>vegan</p>}
