@@ -1,5 +1,10 @@
 import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
+import { RootState, useAppDispatch } from '../../redux/store'
+import { useSelector } from 'react-redux'
+import { TCartItem, addItem } from '../../redux/slice/cartSlice'
+
+import { ToastContainer, toast } from 'react-toastify'
 
 import styles from './Details.module.scss'
 
@@ -8,16 +13,47 @@ type TDetails = {
    title: string
    description: string
    price: number
+   portionSize: number
+   vegan: boolean
+   spicy: boolean
 }
 
 const SushiDetails: React.FC = () => {
    const { id } = useParams()
-   const [data, setData] = useState<TDetails>({
-      img: '',
-      title: '',
-      description: '',
-      price: 0
-   })
+
+   const dispatch = useAppDispatch()
+
+   const { sushiData } = useSelector((state: RootState) => state.homeSlice)
+   const { cartItems } = useSelector((state: RootState) => state.cartSlice)
+
+   const sushiItem = sushiData.find((item) => item.id === Number(id))
+   const cartItem = cartItems.find((item) => item.id === Number(id))
+
+   const [data, setData] = useState<TDetails | null>(null)
+
+   const addItemToCart = () => {
+      if (sushiItem) {
+         const item: TCartItem = {
+            id: sushiItem.id,
+            title: sushiItem.title,
+            img: sushiItem.img,
+            price: sushiItem.price,
+            count: 0
+         }
+
+         dispatch(addItem(item))
+
+         toast.success(
+            <span>
+               <strong>{sushiItem.title.toUpperCase()}</strong> added into cart
+            </span>
+         )
+      } else {
+         console.log('Nothing ...')
+      }
+   }
+
+   console.log(sushiItem)
 
    useEffect(() => {
       const fetchDetails = async () => {
@@ -33,14 +69,47 @@ const SushiDetails: React.FC = () => {
       fetchDetails()
    }, [id])
 
+   if (!data) {
+      return <h1>Loading...</h1>
+   }
+
    return (
-      <section className={styles}>
-         <div className="container">
+      <section className={styles.details}>
+         <ToastContainer autoClose={1000} />
+
+         <div className={styles.detailsImage}>
             <img src={data.img} alt={data.title} />
-            <h2>{data.title}</h2>
-            <p>{data.description}</p>
-            <h3>{data.price.toFixed(2)} €</h3>
          </div>
+
+         <div className={styles.detailsInfo}>
+            <h2>{data.title}</h2>
+            {data.portionSize > 0 && (
+               <p className={styles.portion}>{data.portionSize} pcs</p>
+            )}
+            {data.vegan && <p className={styles.vegan}>vegan</p>}
+            {data.spicy && <p className={styles.spicy}>spicy</p>}
+            <p className={styles.description}>{data.description}</p>
+            <h3>EUR {data.price.toFixed(2)}</h3>
+         </div>
+
+         <button className={`button ${styles.btn}`} onClick={addItemToCart}>
+            <svg
+               width="12"
+               height="12"
+               viewBox="0 0 12 12"
+               fill="none"
+               xmlns="http://www.w3.org/2000/svg"
+            >
+               <path
+                  d="M10.8 4.8H7.2V1.2C7.2 0.5373 6.6627 0 6 0C5.3373 0 4.8 0.5373 4.8 1.2V4.8H1.2C0.5373 4.8 0 5.3373 0 6C0 6.6627 0.5373 7.2 1.2 7.2H4.8V10.8C4.8 11.4627 5.3373 12 6 12C6.6627 12 7.2 11.4627 7.2 10.8V7.2H10.8C11.4627 7.2 12 6.6627 12 6C12 5.3373 11.4627 4.8 10.8 4.8Z"
+                  fill="white"
+               />
+            </svg>
+            Order
+            {cartItem && cartItem.count > 0 && (
+               <span className={styles.sushiCount}>{cartItem.count}</span>
+            )}
+         </button>
       </section>
    )
 }

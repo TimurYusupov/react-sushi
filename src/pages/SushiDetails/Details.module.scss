@@ -1,0 +1,141 @@
+@import '../../styles/variables';
+
+.details {
+    max-width: 700px;
+    // display: flex;
+
+    &Image {
+        img {
+            width: 100%;
+        }
+    }
+
+    &Info {
+        text-align: center;
+
+        h2 {
+            margin-bottom: 5px;
+            font-size: 26px;
+        }
+
+        .portion,
+        .vegan,
+        .spicy {
+            display: inline;
+            padding: 3px 4px;
+            color: #fff;
+            font-size: 12px;
+            margin-right: 3px;
+            border-radius: 3px;
+        }
+
+        .portion {
+            background-color: rgba(179, 179, 179, 1.0);
+        }
+
+        .vegan {
+            background-color: darkseagreen;
+        }
+
+        .spicy {
+            background-color: #F7B033;
+            margin-bottom: 5px;
+        }
+
+        .description {
+            margin-top: 10px;
+            padding: 0 20px;
+        }
+
+        h3 {
+            margin: 5px 0;
+            font-size: 16px;
+        }
+    }
+
+    .btn {
+        margin: 0 auto;
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        margin-top: 10px;
+        padding: 10px 30px;
+        background-color: #fff;
+        border: 1px solid $orange;
+        border-radius: 20px;
+        font-weight: 600;
+        font-size: 17px;
+        color: $orange;
+        text-transform: unset;
+        transition: all 0.2s ease-in-out;
+
+        @media (min-width: 460px) {
+            padding: 8px 20px;
+            font-size: 16px;
+        }
+
+        &:hover {
+            background-color: $orange;
+            color: #fff;
+
+            svg path {
+                fill: #fff;
+            }
+
+            .sushiCount {
+                background-color: #fff;
+                color: $orange;
+            }
+        }
+
+        svg path {
+            fill: $orange;
+            transition: all 0.2s ease-in-out;
+        }
+
+        .sushiCount {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            width: 19px;
+            height: 19px;
+            background-color: $orange;
+            color: #fff;
+            font-size: 14px;
+            border-radius: 50%;
+            transition: all 0.2s ease-in-out;
+
+            &:hover {
+                background-color: #fff;
+                color: $orange;
+            }
+        }
+    }
+
+    @media (min-width: 500px) {
+        &Info {
+            .description {
+                padding: 0 50px;
+            }
+        }
+    }
+
+    @media (min-width: 600px) {
+        &Info {
+            .description {
+                padding: 0 80px;
+            }
+        }
+    }
+
+    @media (min-width: 700px) {
+        max-width: 400px;
+        margin: 0 auto;
+
+        &Info {
+            .description {
+                padding: 0 40px;
+            }
+        }
+    }
+}
