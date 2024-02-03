@@ -5,6 +5,7 @@ import { RootState, useAppDispatch } from '../../redux/store'
 import { useSelector } from 'react-redux'
 
 import styles from './SushiCard.module.scss'
+import { Link } from 'react-router-dom'
 
 type TSushiCardProps = {
    id: number
@@ -49,7 +50,9 @@ const SushiCard: React.FC<TSushiCardProps> = ({
 
    return (
       <article className={styles.sushiCard}>
-         <img src={img} alt={title} />
+         <Link to={`/item/${id}`}>
+            <img src={img} alt={title} />
+         </Link>
          <div className={styles.rightSide}>
             <div className={styles.info}>
                <h3 className={styles.name}>{title}</h3>
