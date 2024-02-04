@@ -1,8 +1,16 @@
 @import '../../styles/variables';
 
+.spinnerContainer {
+    max-width: 300px;
+    margin: 0 auto;
+
+    .spinner {
+        width: 100%;
+    }
+}
+
 .details {
     max-width: 700px;
-    // display: flex;
 
     &Image {
         img {
@@ -54,11 +62,10 @@
     }
 
     .btn {
-        margin: 0 auto;
+        margin: 10px auto 0;
         display: flex;
         align-items: center;
         gap: 4px;
-        margin-top: 10px;
         padding: 10px 30px;
         background-color: #fff;
         border: 1px solid $orange;
@@ -112,6 +119,7 @@
         }
     }
 
+
     @media (min-width: 500px) {
         &Info {
             .description {
@@ -136,6 +144,25 @@
             .description {
                 padding: 0 40px;
             }
+        }
+    }
+
+    @media (min-width: 1000px) {
+        max-width: unset;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+
+        &Image {
+            width: 450px;
+        }
+
+        &Info {
+            text-align: left;
+        }
+
+        .btn {
+            margin: 10px 0 0;
         }
     }
 }
