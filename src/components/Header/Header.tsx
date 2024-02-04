@@ -21,7 +21,7 @@ const Header: React.FC = () => {
                </div>
             </div>
          </Link>
-         {location.pathname !== '/cart' && <Search />}
+         {location.pathname === '/' && <Search />}
          <Link to="/cart" className="button button--cart">
             <span>{totalPrice.toFixed(2)} €</span>
             <div className="button__divider"></div>
