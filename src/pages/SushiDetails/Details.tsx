@@ -26,12 +26,51 @@ const SushiDetails: React.FC = () => {
    const { sushiData } = useSelector((state: RootState) => state.homeSlice)
    const { cartItems } = useSelector((state: RootState) => state.cartSlice)
 
-   const sushiItem = sushiData.find((item) => item.id === Number(id))
    const cartItem = cartItems.find((item) => item.id === Number(id))
 
    const [data, setData] = useState<TDetails | null>(null)
 
-   const addItemToCart = () => {
+   /* const addItemToCart = () => {
+      if (sushiItem) {
+         const item: TCartItem = {
+            id: sushiItem.id,
+            title: sushiItem.title,
+            img: sushiItem.img,
+            price: sushiItem.price,
+            count: 0
+         }
+
+         dispatch(addItem(item))
+
+         toast.success(
+            <span>
+               <strong>{sushiItem.title.toUpperCase()}</strong> added into cart
+            </span>
+         )
+      } else {
+         console.log('Nothing ...')
+      }
+   } */
+
+   const fetchDetails = async () => {
+      try {
+         const response = await fetch(`https://518e0d814bf9a511.mokky.dev/items/${id}`)
+         const json = await response.json()
+         setData(json)
+      } catch (err) {
+         console.log('Error during sushi details fetching')
+      }
+   }
+
+   const addItemToCart = async () => {
+      if (!data) {
+         // Data is not available yet, fetch and try again
+         await fetchDetails()
+      }
+
+      const sushiItem = sushiData.find((item) => item.id === Number(id))
+      console.log(sushiItem)
+
       if (sushiItem) {
          const item: TCartItem = {
             id: sushiItem.id,
@@ -53,10 +92,8 @@ const SushiDetails: React.FC = () => {
       }
    }
 
-   console.log(sushiItem)
-
    useEffect(() => {
-      const fetchDetails = async () => {
+      /* const fetchDetails = async () => {
          try {
             const response = await fetch(`https://518e0d814bf9a511.mokky.dev/items/${id}`)
             const data = await response.json()
@@ -64,10 +101,10 @@ const SushiDetails: React.FC = () => {
          } catch (err) {
             console.log('Error during sushi details fetching')
          }
-      }
+      } */
 
       fetchDetails()
-   }, [id])
+   }, [])
 
    if (!data) {
       return <h1>Loading...</h1>
