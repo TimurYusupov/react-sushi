@@ -1,5 +1,7 @@
 import { Link } from 'react-router-dom'
 
+import GoBackBtn from '../Buttons/GoBackBtn/GoBackBtn'
+
 import styles from './CartEmpty.module.scss'
 
 const CartEmpty: React.FC = () => {
@@ -14,24 +16,15 @@ const CartEmpty: React.FC = () => {
             To order sushi, please go to the main page
          </p>
          <img src="/img/cart/empty-cart.png" alt="Empty cart" />
-         <Link to="/" className={`${styles.cartEmptyBtn} ${styles.goBackBtn}`}>
-            <svg
-               width="8"
-               height="14"
-               viewBox="0 0 8 14"
-               fill="none"
-               xmlns="http://www.w3.org/2000/svg"
-            >
-               <path
-                  d="M7 13L1 6.93015L6.86175 1"
-                  stroke="#D3D3D3"
-                  strokeWidth="2"
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-               />
-            </svg>
-            <span>Go back</span>
-         </Link>
+         <GoBackBtn
+            backgroundColor="#232323"
+            padding="16px"
+            width="210px"
+            fontSize="16px"
+            fontWeight="600"
+            textTransform="none"
+            borderRadius="30px"
+         />
       </div>
    )
 }

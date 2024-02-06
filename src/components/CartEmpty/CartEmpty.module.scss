@@ -22,35 +22,6 @@
       margin: 45px auto 60px;
    }
 
-   .cartEmptyBtn {
-      padding: 16px;
-      width: 210px;
-      font-size: 16px;
-      font-weight: 600;
-      text-transform: unset;
-      border-radius: 30px;
-   }
-
-   .goBackBtn {
-      display: inline-flex;
-      align-items: center;
-      justify-content: center;
-      gap: 10px;
-      background-color: #232323;
-      border: 1px solid #dddddd;
-
-      span {
-         color: #c3c3c3;
-         transition: all 0.2s ease-in-out;
-      }
-
-      &:hover {
-         span {
-            color: #fff;
-         }
-      }
-   }
-
    @media (min-width: 700px) {
       h2 {
          font-size: 36px;

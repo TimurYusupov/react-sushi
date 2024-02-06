@@ -9,6 +9,7 @@ import CartEmpty from '../../components/CartEmpty/CartEmpty'
 
 import styles from './Cart.module.scss'
 import 'react-toastify/dist/ReactToastify.css'
+import GoBackBtn from '../../components/Buttons/GoBackBtn/GoBackBtn'
 
 const Cart: React.FC = () => {
    const dispatch = useAppDispatch()
@@ -96,31 +97,18 @@ const Cart: React.FC = () => {
                   </span>
                </div>
             </div>
+
             <div className={styles.cartBottomButtons}>
-               <Link
-                  to="/"
-                  className={`button ${styles.cartBottomBtn} ${styles.goBackBtn}`}
-               >
-                  <svg
-                     width="8"
-                     height="14"
-                     viewBox="0 0 8 14"
-                     fill="none"
-                     xmlns="http://www.w3.org/2000/svg"
-                  >
-                     <path
-                        d="M7 13L1 6.93015L6.86175 1"
-                        stroke="#D3D3D3"
-                        strokeWidth="2"
-                        strokeLinecap="round"
-                        strokeLinejoin="round"
-                     />
-                  </svg>
-                  <span>Go back</span>
-               </Link>
-               <button className={`button ${styles.cartBottomBtn} ${styles.payBtn}`}>
-                  Order now
-               </button>
+               <GoBackBtn
+                  backgroundColor="#232323"
+                  padding="11px"
+                  width="140px"
+                  fontSize="16px"
+                  fontWeight="600"
+                  textTransform="none"
+                  borderRadius="30px"
+               />
+               <button className={`button ${styles.payBtn}`}>Order now</button>
             </div>
          </section>
       </div>

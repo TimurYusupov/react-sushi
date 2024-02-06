@@ -5,6 +5,7 @@ import { useSelector } from 'react-redux'
 import { TCartItem, addItem } from '../../redux/slice/cartSlice'
 
 import { ToastContainer, toast } from 'react-toastify'
+import GoBackBtn from '../../components/Buttons/GoBackBtn/GoBackBtn'
 
 import styles from './Details.module.scss'
 
@@ -91,7 +92,7 @@ const SushiDetails: React.FC = () => {
                {data.spicy && <p className={styles.spicy}>spicy</p>}
                <p className={styles.description}>{data.description}</p>
                <h3>EUR {data.price.toFixed(2)}</h3>
-               <button className={`button ${styles.btn}`} onClick={addItemToCart}>
+               <button className={`button ${styles.orderBtn}`} onClick={addItemToCart}>
                   <svg
                      width="12"
                      height="12"
@@ -111,6 +112,18 @@ const SushiDetails: React.FC = () => {
                </button>
             </div>
          </section>
+
+         <div className={styles.backBtn}>
+            <GoBackBtn
+               backgroundColor="#232323"
+               padding="16px"
+               width="210px"
+               fontSize="16px"
+               fontWeight="600"
+               textTransform="none"
+               borderRadius="30px"
+            />
+         </div>
       </>
    )
 }

@@ -10,7 +10,7 @@
 }
 
 .details {
-    margin-top: 40px;
+    margin: 40px auto 30px;
     max-width: 700px;
 
     &Image {
@@ -64,7 +64,7 @@
         }
     }
 
-    .btn {
+    .orderBtn {
         margin: 10px auto 0;
         display: flex;
         align-items: center;
@@ -141,7 +141,6 @@
 
     @media (min-width: 700px) {
         max-width: 400px;
-        margin: 40px auto 20px;
 
         &Info {
             .description {
@@ -170,8 +169,12 @@
             }
         }
 
-        .btn {
+        .orderBtn {
             margin: 10px 0 0;
         }
     }
+}
+
+.backBtn {
+    text-align: center;
 }

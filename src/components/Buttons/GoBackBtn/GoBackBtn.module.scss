@@ -1,0 +1,21 @@
+.goBackBtn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    border: 1px solid #dddddd;
+    transition: all 0.2s ease-in-out;
+
+    span {
+        color: #c3c3c3;
+        transition: all 0.2s ease-in-out;
+    }
+
+    &:hover {
+        background-color: lighten(#232323, 3%) !important;
+
+        span {
+            color: #fff;
+        }
+    }
+}
