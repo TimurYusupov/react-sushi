@@ -1,4 +1,3 @@
-import { Link } from 'react-router-dom'
 import { RootState, useAppDispatch } from '../../redux/store'
 import { useSelector } from 'react-redux'
 import { clearItems } from '../../redux/slice/cartSlice'
@@ -9,6 +8,7 @@ import CartEmpty from '../../components/CartEmpty/CartEmpty'
 
 import styles from './Cart.module.scss'
 import 'react-toastify/dist/ReactToastify.css'
+
 import GoBackBtn from '../../components/Buttons/GoBackBtn/GoBackBtn'
 
 const Cart: React.FC = () => {
