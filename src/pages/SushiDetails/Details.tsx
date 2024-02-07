@@ -2,10 +2,12 @@ import { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import { RootState, useAppDispatch } from '../../redux/store'
 import { useSelector } from 'react-redux'
-import { TCartItem, addItem } from '../../redux/slice/cartSlice'
+import { TCartItem, addItem, minusItem } from '../../redux/slice/cartSlice'
 
 import { ToastContainer, toast } from 'react-toastify'
+
 import GoBackBtn from '../../components/Buttons/GoBackBtn/GoBackBtn'
+import AddBtn from '../../components/Buttons/AddBtn/AddBtn'
 
 import styles from './Details.module.scss'
 
@@ -66,6 +68,26 @@ const SushiDetails: React.FC = () => {
       }
    }
 
+   const increaseCount = () => {
+      if (data) {
+         const item: TCartItem = {
+            id: data.id,
+            title: data.title,
+            img: data.img,
+            price: data.price,
+            count: 0
+         }
+
+         dispatch(addItem(item))
+      }
+   }
+
+   const decreaseCount = () => {
+      if (data) {
+         dispatch(minusItem(data.id))
+      }
+   }
+
    if (!data) {
       return (
          <div className={styles.spinnerContainer}>
@@ -92,24 +114,13 @@ const SushiDetails: React.FC = () => {
                {data.spicy && <p className={styles.spicy}>spicy</p>}
                <p className={styles.description}>{data.description}</p>
                <h3>EUR {data.price.toFixed(2)}</h3>
-               <button className={`button ${styles.orderBtn}`} onClick={addItemToCart}>
-                  <svg
-                     width="12"
-                     height="12"
-                     viewBox="0 0 12 12"
-                     fill="none"
-                     xmlns="http://www.w3.org/2000/svg"
-                  >
-                     <path
-                        d="M10.8 4.8H7.2V1.2C7.2 0.5373 6.6627 0 6 0C5.3373 0 4.8 0.5373 4.8 1.2V4.8H1.2C0.5373 4.8 0 5.3373 0 6C0 6.6627 0.5373 7.2 1.2 7.2H4.8V10.8C4.8 11.4627 5.3373 12 6 12C6.6627 12 7.2 11.4627 7.2 10.8V7.2H10.8C11.4627 7.2 12 6.6627 12 6C12 5.3373 11.4627 4.8 10.8 4.8Z"
-                        fill="white"
-                     />
-                  </svg>
-                  Order
-                  {cartItem && cartItem.count > 0 && (
-                     <span className={styles.sushiCount}>{cartItem.count}</span>
-                  )}
-               </button>
+               <AddBtn
+                  id={data.id}
+                  cartItem={cartItem}
+                  addItemToCart={addItemToCart}
+                  increaseCount={increaseCount}
+                  decreaseCount={decreaseCount}
+               />
             </div>
          </section>
 
