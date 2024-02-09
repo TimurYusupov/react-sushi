@@ -6,20 +6,8 @@
    align-items: center;
    margin-bottom: 20px;
 
-   @media (min-width: 460px) {
-      margin-bottom: 0;
-   }
-
-   @media (min-width: 1215px) {
-      flex-direction: row;
-   }
-
    img {
       width: 290px;
-
-      @media (min-width: 460px) {
-         width: 200px;
-      }
    }
 
    .rightSide {
@@ -66,5 +54,17 @@
 
    .btnWrapper {
       margin-top: 10px;
+   }
+
+   @media (min-width: 460px) {
+      margin-bottom: 0;
+
+      img {
+         width: 200px;
+      }
+   }
+
+   @media (min-width: 1215px) {
+      flex-direction: row;
    }
 }
