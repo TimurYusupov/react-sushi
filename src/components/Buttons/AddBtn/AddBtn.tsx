@@ -3,7 +3,7 @@ import { TCartItem } from '../../../redux/slice/cartSlice'
 import styles from '../AddBtn/AddBtn.module.scss'
 
 type TAddBtnProps = {
-   id: number
+   textContent: string
    cartItem?: TCartItem
    addItemToCart: () => void
    increaseCount: () => void
@@ -11,6 +11,7 @@ type TAddBtnProps = {
 }
 
 const AddBtn: React.FC<TAddBtnProps> = ({
+   textContent,
    cartItem,
    addItemToCart,
    increaseCount,
@@ -32,7 +33,7 @@ const AddBtn: React.FC<TAddBtnProps> = ({
                      fill="white"
                   />
                </svg>
-               Order
+               {textContent}
             </button>
          ) : (
             <div className={styles.countBtns}>

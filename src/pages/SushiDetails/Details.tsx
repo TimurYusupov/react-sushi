@@ -28,6 +28,7 @@ const SushiDetails: React.FC = () => {
    const dispatch = useAppDispatch()
 
    const [data, setData] = useState<TDetails | null>(null)
+
    const { cartItems } = useSelector((state: RootState) => state.cartSlice)
 
    const cartItem = cartItems.find((item) => item.id === Number(id))
@@ -115,7 +116,7 @@ const SushiDetails: React.FC = () => {
                <p className={styles.description}>{data.description}</p>
                <h3>EUR {data.price.toFixed(2)}</h3>
                <AddBtn
-                  id={data.id}
+                  textContent={'Order'}
                   cartItem={cartItem}
                   addItemToCart={addItemToCart}
                   increaseCount={increaseCount}

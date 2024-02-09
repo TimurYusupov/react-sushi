@@ -62,63 +62,9 @@
             background-color: #F7B033;
          }
       }
+   }
 
-      .btn {
-         display: flex;
-         align-items: center;
-         gap: 4px;
-         margin-top: 10px;
-         padding: 10px 30px;
-         background-color: #fff;
-         border: 1px solid $orange;
-         border-radius: 20px;
-         font-weight: 600;
-         font-size: 17px;
-         color: $orange;
-         text-transform: unset;
-         transition: all 0.2s ease-in-out;
-
-         @media (min-width: 460px) {
-            padding: 8px 20px;
-            font-size: 16px;
-         }
-
-         &:hover {
-            background-color: $orange;
-            color: #fff;
-
-            svg path {
-               fill: #fff;
-            }
-
-            .sushiCount {
-               background-color: #fff;
-               color: $orange;
-            }
-         }
-
-         svg path {
-            fill: $orange;
-            transition: all 0.2s ease-in-out;
-         }
-
-         .sushiCount {
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            width: 19px;
-            height: 19px;
-            background-color: $orange;
-            color: #fff;
-            font-size: 14px;
-            border-radius: 50%;
-            transition: all 0.2s ease-in-out;
-
-            &:hover {
-               background-color: #fff;
-               color: $orange;
-            }
-         }
-      }
+   .btnWrapper {
+      margin-top: 10px;
    }
 }

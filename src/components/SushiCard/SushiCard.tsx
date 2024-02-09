@@ -1,11 +1,12 @@
-import { toast } from 'react-toastify'
-
-import { TCartItem, addItem } from '../../redux/slice/cartSlice'
+import { Link } from 'react-router-dom'
+import { TCartItem, addItem, minusItem } from '../../redux/slice/cartSlice'
 import { RootState, useAppDispatch } from '../../redux/store'
 import { useSelector } from 'react-redux'
+import { toast } from 'react-toastify'
+
+import AddBtn from '../Buttons/AddBtn/AddBtn'
 
 import styles from './SushiCard.module.scss'
-import { Link } from 'react-router-dom'
 
 type TSushiCardProps = {
    id: number
@@ -41,6 +42,7 @@ const SushiCard: React.FC<TSushiCardProps> = ({
       }
 
       dispatch(addItem(item))
+
       toast.success(
          <span>
             <strong>{title.toUpperCase()}</strong> added into cart
@@ -48,11 +50,28 @@ const SushiCard: React.FC<TSushiCardProps> = ({
       )
    }
 
+   const increaseCount = () => {
+      const item: TCartItem = {
+         id,
+         title,
+         img,
+         price,
+         count: 0
+      }
+
+      dispatch(addItem(item))
+   }
+
+   const decreaseCount = () => {
+      dispatch(minusItem(id))
+   }
+
    return (
       <article className={styles.sushiCard}>
          <Link to={`/item/${id}`}>
             <img src={img} alt={title} />
          </Link>
+
          <div className={styles.rightSide}>
             <div className={styles.info}>
                <Link to={`/item/${id}`}>
@@ -63,24 +82,15 @@ const SushiCard: React.FC<TSushiCardProps> = ({
                {vegan && <p className={styles.vegan}>vegan</p>}
                {spicy && <p className={styles.spicy}>spicy</p>}
             </div>
-            <button className={`button ${styles.btn}`} onClick={addItemToCart}>
-               <svg
-                  width="12"
-                  height="12"
-                  viewBox="0 0 12 12"
-                  fill="none"
-                  xmlns="http://www.w3.org/2000/svg"
-               >
-                  <path
-                     d="M10.8 4.8H7.2V1.2C7.2 0.5373 6.6627 0 6 0C5.3373 0 4.8 0.5373 4.8 1.2V4.8H1.2C0.5373 4.8 0 5.3373 0 6C0 6.6627 0.5373 7.2 1.2 7.2H4.8V10.8C4.8 11.4627 5.3373 12 6 12C6.6627 12 7.2 11.4627 7.2 10.8V7.2H10.8C11.4627 7.2 12 6.6627 12 6C12 5.3373 11.4627 4.8 10.8 4.8Z"
-                     fill="white"
-                  />
-               </svg>
-               Add
-               {cartItem && cartItem.count > 0 && (
-                  <span className={styles.sushiCount}>{cartItem.count}</span>
-               )}
-            </button>
+            <div className={styles.btnWrapper}>
+               <AddBtn
+                  textContent={'Add'}
+                  cartItem={cartItem}
+                  addItemToCart={addItemToCart}
+                  increaseCount={increaseCount}
+                  decreaseCount={decreaseCount}
+               />
+            </div>
          </div>
       </article>
    )
