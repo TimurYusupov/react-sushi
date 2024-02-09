@@ -16,8 +16,6 @@ const AddBtn: React.FC<TAddBtnProps> = ({
    increaseCount,
    decreaseCount
 }) => {
-   console.log(cartItem)
-
    return (
       <>
          {!cartItem ? (
