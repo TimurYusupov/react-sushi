@@ -22,7 +22,7 @@ type TDetails = {
    spicy: boolean
 }
 
-const SushiDetails: React.FC = () => {
+const Details: React.FC = () => {
    const { id } = useParams()
 
    const dispatch = useAppDispatch()
@@ -140,4 +140,4 @@ const SushiDetails: React.FC = () => {
    )
 }
 
-export default SushiDetails
+export default Details
