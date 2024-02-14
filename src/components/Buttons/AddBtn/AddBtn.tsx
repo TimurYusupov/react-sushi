@@ -3,6 +3,8 @@ import { TCartItem } from '../../../redux/slice/cartSlice'
 import styles from '../AddBtn/AddBtn.module.scss'
 
 type TAddBtnProps = {
+   countBtnPadding?: string
+   countTextSize?: string
    textContent: string
    cartItem?: TCartItem
    addItemToCart: () => void
@@ -11,12 +13,22 @@ type TAddBtnProps = {
 }
 
 const AddBtn: React.FC<TAddBtnProps> = ({
+   countBtnPadding,
+   countTextSize,
    textContent,
    cartItem,
    addItemToCart,
    increaseCount,
    decreaseCount
 }) => {
+   const countBtnPaddingStyle = {
+      padding: countBtnPadding
+   }
+
+   const countTextSizeStyle = {
+      fontSize: countTextSize
+   }
+
    return (
       <>
          {!cartItem ? (
@@ -39,6 +51,7 @@ const AddBtn: React.FC<TAddBtnProps> = ({
             <div className={styles.countBtns}>
                <button
                   className={`button ${styles.buttonCart} ${styles.minus}`}
+                  style={countBtnPaddingStyle}
                   onClick={decreaseCount}
                >
                   <svg
@@ -58,9 +71,10 @@ const AddBtn: React.FC<TAddBtnProps> = ({
                      />
                   </svg>
                </button>
-               <b>{cartItem.count}</b>
+               <b style={countTextSizeStyle}>{cartItem.count}</b>
                <button
                   className={`button ${styles.buttonCart} ${styles.plus}`}
+                  style={countBtnPaddingStyle}
                   onClick={increaseCount}
                >
                   <svg

@@ -84,6 +84,8 @@ const SushiCard: React.FC<TSushiCardProps> = ({
             </div>
             <div className={styles.btnWrapper}>
                <AddBtn
+                  countBtnPadding="5px 9px"
+                  countTextSize="20px"
                   textContent={'Add'}
                   cartItem={cartItem}
                   addItemToCart={addItemToCart}
