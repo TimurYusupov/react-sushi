@@ -13,19 +13,38 @@
    cursor: pointer;
    transition: all 0.2s ease-in-out;
 
-   &:hover {
-      background-color: $orange;
-      color: #fff;
+   @media (hover: hover) {
+      &:hover {
+         background-color: $orange;
+         color: #fff;
 
-      svg path {
-         fill: #fff;
-      }
+         svg path {
+            fill: #fff;
+         }
 
-      .sushiCount {
-         background-color: #fff;
-         color: $orange;
+         .sushiCount {
+            background-color: #fff;
+            color: $orange;
+         }
       }
    }
+
+   @media (hover: none) {
+      &:active {
+         background-color: $orange;
+         color: #fff;
+
+         svg path {
+            fill: #fff;
+         }
+
+         .sushiCount {
+            background-color: #fff;
+            color: $orange;
+         }
+      }
+   }
+
 
    svg {
       margin-right: 4px;
@@ -55,19 +74,33 @@
       border-radius: 25px;
       transition: all 0.2s ease-in-out;
 
-      &:hover {
-         background-color: $orange;
+      @media (hover: hover) {
+         &:hover {
+            background-color: $orange;
 
-         svg {
-            path {
-               fill: #fff;
+            svg {
+               path {
+                  fill: #fff;
+               }
             }
          }
       }
 
-      &:active {
-         transform: translateY(7px);
+      @media (hover: none) {
+         &:active {
+            background-color: $orange;
+
+            svg {
+               path {
+                  fill: #fff;
+               }
+            }
+         }
       }
+
+      /* &:active {
+         transform: translateY(7px);
+      } */
    }
 
    .minus {

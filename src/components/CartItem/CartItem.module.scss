@@ -67,12 +67,26 @@
          border-radius: 25px;
          transition: all 0.2s ease-in-out;
 
-         &:hover {
-            background-color: $orange;
+         @media (hover: hover) {
+            &:hover {
+               background-color: $orange;
 
-            svg {
-               path {
-                  fill: #fff;
+               svg {
+                  path {
+                     fill: #fff;
+                  }
+               }
+            }
+         }
+
+         @media (hover: none) {
+            &:active {
+               background-color: $orange;
+
+               svg {
+                  path {
+                     fill: #fff;
+                  }
                }
             }
          }
@@ -166,10 +180,18 @@
                fill: darken($color: $gray-line, $amount: 15);
             }
 
-            &:hover,
-            &:active {
-               border-color: darken($color: $gray-line, $amount: 80);
-               background-color: darken($color: $gray-line, $amount: 80);
+            @media (hover: hover) {
+               &:hover {
+                  border-color: darken($color: $gray-line, $amount: 80);
+                  background-color: darken($color: $gray-line, $amount: 80);
+               }
+            }
+
+            @media (hover: none) {
+               &:active {
+                  border-color: darken($color: $gray-line, $amount: 80);
+                  background-color: darken($color: $gray-line, $amount: 80);
+               }
             }
          }
       }
